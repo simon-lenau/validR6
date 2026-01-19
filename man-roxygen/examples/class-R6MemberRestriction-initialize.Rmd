@@ -1,0 +1,27 @@
+```{r}
+# ===================== > Create R6MemberRestrictions < ====================== #
+
+# Restriction that checks if length of value equals 2
+length_restriction <-
+    R6MemberRestriction$new(
+        id = "Length check",
+        restriction = function(x) {
+            if (length(x) != 2) {
+                stop("Length should be 2!")
+            }
+            return(TRUE)
+        }
+    )
+
+# Restriction that checks if type of value is "character"
+type_restriction <-
+    R6MemberRestriction$new(
+        id = "Type check",
+        restriction = function(x) {
+            if (typeof(x) != "character") {
+                stop("type should be character!")
+            }
+            return(TRUE)
+        }
+    )
+```

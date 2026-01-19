@@ -1,0 +1,21 @@
+```{r,eval=TRUE,echo=FALSE,results="asis"}
+class_name <- .doc_topic()
+field_or_arg_name <- knitr::opts_current$get(".doc_arg_name")
+
+child_name <-
+    tryCatch(
+        normalizePath(paste0("class-", class_name, "-", field_or_arg_name, ".Rmd"), mustWork = TRUE),
+        error = function(e) {
+            normalizePath(paste0("class-x-", field_or_arg_name, ".Rmd"), mustWork = TRUE)
+        }
+    )
+
+knitr::asis_output(
+    c(
+        knitr::knit_child(
+            child_name,
+            options = list(.doc_class_name = class_name, doc_tag = field_or_arg_name)
+        )
+    )
+)
+```

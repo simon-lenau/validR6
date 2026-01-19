@@ -1,0 +1,39 @@
+```{r,eval=TRUE,echo=FALSE,results="asis"}
+.doc_arg(
+    type = paste(
+        .doc_type("logical"),
+        "or",
+        .doc_type("integer")
+    ),
+    description = c(
+        "The amount of information about the",
+        .doc_ref(tag = "value"),
+        "to be printed.",
+        "One of:",
+        .doc_tbl(
+            rbind(
+                c(
+                    "`value_level == FALSE` or `value_level <= 0`",
+                    "",
+                    .doc_fmt_print_what()
+                ),
+                c(
+                    "`0 < value_level`",
+                    "",
+                    .doc_fmt_print_what(
+                        paste(.doc_ref(tag = "value", suffix = "'s"), "first `value_level` characters")
+                    )
+                ),
+                c(
+                    "`value_level == TRUE`",
+                    "",
+                    .doc_fmt_print_what(paste(.doc_ref(tag = "value"), "entirely"))
+                )
+            ),
+            alignment = c("r", "c", "l"),
+            width = c(15, 2, 60)
+        ),
+        ""
+    )
+)
+```

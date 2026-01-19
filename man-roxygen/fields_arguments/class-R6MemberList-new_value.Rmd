@@ -1,0 +1,13 @@
+ ```{r,eval=TRUE,echo=FALSE,results="asis"}
+.doc_arg(
+    type = "any",
+    description = c(
+        "Either missing (for the getter),",
+        "or the new value(s) to be assigned to the",
+        .doc_r6member(),
+        "objects in the",
+        .doc_r6memberlist(),
+        "(setter case)."
+    )
+)
+ ```

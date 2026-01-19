@@ -1,0 +1,18 @@
+ ```{r,eval=TRUE,echo=FALSE,results="asis"}
+.doc_arg(
+    type = "logical",
+    default = TRUE,
+    description = c(
+        "If `TRUE`, the subset is a _single_",
+        .doc_r6member(),
+        "object from the",
+        .doc_ref_self(),
+        ", in analogy to `list[[elem]]`.<br>",
+        "If `FALSE`, the subset itself is a",
+        .doc_ref_self(),
+        "containing",
+        .doc_r6member(suffix = " objects"),
+        ", in analogy to `list[elems]`."
+    )
+)
+```

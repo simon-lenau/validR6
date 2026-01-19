@@ -1,0 +1,32 @@
+
+
+```{r,eval=TRUE,echo=FALSE,results="asis"}
+.doc_arg(
+    type = "function",
+    default = function(x) TRUE,
+    description = c(
+        "A",
+        .doc_type_function(),
+        "representing the validation rule for a",
+        .doc_phrase_value(),
+        ".",
+        "<br>",
+        "It must take a single argument and",
+        "return a single",
+        .doc_type_logical(),
+        "value indicating if its argument meets the criteria (`TRUE`) or not (`FALSE`).",
+        "<br>",
+        "Alternatively, it may throw an error _if the criteria are not met_ to provide more detailed information.",
+        "<br>",
+        "The function should be designed to handle various input types gracefully,",
+        "as it will be tested with multiple sample inputs during initialization.",
+        "<br>",
+        "Common patterns include type checking, length validation, range checking, and value constraints.",
+        "<br>",
+        .doc_fmt_highlight(
+           c("This function is applied by method ",.doc_ref(tag = "check")," to enforce the validation rule.")
+        )
+    ),
+    affected_methods = c("check")
+)
+```

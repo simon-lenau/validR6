@@ -1,0 +1,714 @@
+<!DOCTYPE html><html><head><title>R: R6MemberRestriction: Validity constraints for 'R6Member'...</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script>
+const macros = { "\\R": "\\textsf{R}", "\\mbox": "\\text", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>R6MemberRestriction</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2><a id="R6MemberRestriction"></a>
+R6MemberRestriction:
+Validity constraints for <code>R6Member</code> objects</h2>
+
+<h3>Description</h3>
+
+<a id="sec-description"></a>
+<p>A <code>R6MemberRestriction</code> encapsulates and manages a single validation rule &ndash; a <a href="#active-R6MemberRestriction-restriction"><code>restriction</code></a> &ndash; as a reusable object.
+This validation rule is a user-supplied <code>function</code> to check whether <code>value</code>s meet a constraint.
+</p>
+<p>A <code>R6MemberRestriction</code> handles the execution of this rule, manages <code>error</code> reporting, and provides a consistent interface.
+<code>R6MemberRestriction</code> objects are primarily used to validate the
+<code>value</code>
+attribute of
+<code>R6Member</code> objects,
+but can be applied to any <code>value</code> for which a validation rule needs to be enforced.
+</p>
+<p>Each <code>R6MemberRestriction</code> has a unique <a href="#active-R6MemberRestriction-id"><code>id</code></a> for error reporting and a <a href="#active-R6MemberRestriction-restriction"><code>restriction</code></a> function that implements the actual validation logic.
+</p>
+
+
+<h3><a id="sec-R6MemberRestriction-details">Details</a></h3>
+
+<p>A <code>R6MemberRestriction</code> is characterized
+by its <a href="#active-R6MemberRestriction-restriction"><code>restriction</code></a>, a
+<code>function</code>
+specifying a validation rule for an object.
+While the validation logic is entirely defined by the <a href="#active-R6MemberRestriction-restriction"><code>restriction</code></a>,
+the <code>R6MemberRestriction</code> class provides the infrastructure for how the rule is invoked and how results are reported.
+This separation promotes modularity and consistency across validation workflows.
+</p>
+
+
+<h4>Key Features</h4>
+
+
+<ul>
+<li> <p><strong>Encapsulation</strong>: Wraps validation logic in a structured object with metadata
+</p>
+</li>
+<li> <p><strong>Error Handling</strong>: Automatically captures and formats error messages from the restriction function
+</p>
+</li>
+<li> <p><strong>Reusability</strong>: Can be combined with other <code>R6MemberRestrictions</code> in a <code>R6MemberList</code>
+</p>
+</li>
+<li> <p><strong>Identification</strong>: Each restriction has a unique identifier for clear error reporting
+</p>
+</li>
+<li> <p><strong>Flexibility</strong>: Supports both simple boolean returns and detailed error throwing
+</p>
+</li></ul>
+
+
+
+
+<h4><a id="sec-details-restrictions-examples"></a> Typical Examples for <a href="#active-R6MemberRestriction-restriction"><code>Restrictions</code></a></h4>
+
+
+<ul>
+<li> <p><code>value</code> must be of a certain type (such as <code>numeric</code>,  <code>list</code> or  <code>function</code>)
+</p>
+</li>
+<li> <p><code>value</code>'s elements <em>together</em> must meet a <em>common</em> restriction, e.g. in terms of dimensionality (<code>length(value) == k</code>) or totals (<code>sum(value) &gt; t</code>)
+</p>
+</li>
+<li> <p><code>value</code>'s elements <em>each</em> must meet an <em>individual</em> restriction, e.g. be non-negative (<code>all(value &gt;= 0)</code>)
+</p>
+</li></ul>
+
+
+
+
+<h4><a id="sec-details-restrictions-structure"></a> Structure of <a href="#active-R6MemberRestriction-restriction"><code>Restrictions</code></a></h4>
+
+<p>The <a href="#active-R6MemberRestriction-restriction"><code>restriction</code></a> must be a <code>function</code> taking a single argument and returning a single
+<code>logical</code> value to indicate
+if a restriction is met (<code>TRUE</code>) or not (<code>FALSE</code>).
+Alternatively, if validation fails, the <code>function</code> may throw an <code>error</code> providing detailed
+information on how or why the <a href="#active-R6MemberRestriction-restriction"><code>restriction</code></a> is violated.
+The is <a href="#active-R6MemberRestriction-restriction"><code>restriction</code></a> must be able to take arguments of all kinds and shapes.
+It is tested using a range of sample inputs as its argument;
+any violation raises a descriptive <code>error</code> so users know how to fix their rule.
+</p>
+
+
+
+<h4>Validation Workflow</h4>
+
+<p>The
+<code>R6MemberRestriction</code>
+is executed via the
+<a href="#method-R6MemberRestriction-check"><code>R6MemberRestriction$check()</code></a>
+method,
+which applies the rule to a provided value and returns a <code>list</code> containing both the validation decision
+and any error message encountered.
+This encapsulation allows validation results to be easily captured, logged, or aggregated.
+</p>
+<p>The validation workflow includes:
+</p>
+
+<ol>
+<li><p> Call the <a href="#method-R6MemberRestriction-check"><code>check</code></a> method with a value to validate
+</p>
+</li>
+<li><p> The restriction function is executed with the provided value
+</p>
+</li>
+<li><p> The return value (logical or error) is captured and formatted
+</p>
+</li>
+<li><p> A list with <code>decision</code> (TRUE/FALSE) and <code>message</code> (empty or error text) is returned
+</p>
+</li>
+<li><p> Callers can use this structure to implement custom validation strategies
+</p>
+</li></ol>
+
+
+
+
+<h4>Composition of Rules</h4>
+
+<p>Multiple <code>R6MemberRestriction</code> objects are commonly combined to define complex validation logic,
+typically for specifying
+<code>R6Member</code> objects.
+This compositional design keeps individual rules small, testable, and focused on a single concern,
+promoting code clarity and maintainability.
+</p>
+<p>See the R6Member examples for practical examples.
+</p>
+
+
+
+<h3><a id="sec-R6MemberRestriction-examples">Examples</a></h3>
+
+<div class="sourceCode r"><pre># ===================== &gt; Create R6MemberRestrictions &lt; ====================== #
+
+# Restriction that checks if length of value equals 2
+length_restriction &lt;-
+    R6MemberRestriction$new(
+        id = "Length check",
+        restriction = function(x) {
+            if (length(x) != 2) {
+                stop("Length should be 2!")
+            }
+            return(TRUE)
+        }
+    )
+
+# Restriction that checks if type of value is "character"
+type_restriction &lt;-
+    R6MemberRestriction$new(
+        id = "Type check",
+        restriction = function(x) {
+            if (typeof(x) != "character") {
+                stop("type should be character!")
+            }
+            return(TRUE)
+        }
+    )
+</pre></div>
+<div class="sourceCode r"><pre># ====================== &gt; Check R6MemberRestrictions &lt; ====================== #
+
+# Restriction is met
+length_restriction$check(1:2)
+#&gt; $decision
+#&gt; [1] TRUE
+#&gt; 
+#&gt; $message
+#&gt; [1] ""
+type_restriction$check(letters[1:5])
+#&gt; $decision
+#&gt; [1] TRUE
+#&gt; 
+#&gt; $message
+#&gt; [1] ""
+
+# Restriction is violated
+length_restriction$check(1:5)
+#&gt; $decision
+#&gt; [1] FALSE
+#&gt; 
+#&gt; $message
+#&gt; [1] "Length check:\n      Length should be 2!\n   not met by value\n      `1:5`"
+type_restriction$check(1:5)
+#&gt; $decision
+#&gt; [1] FALSE
+#&gt; 
+#&gt; $message
+#&gt; [1] "Type check:\n      type should be character!\n   not met by value\n      `1:5`"
+</pre></div>
+
+
+<h3>Active bindings</h3>
+
+<div class="r6-active-bindings">
+
+<dl>
+<dt><code>id</code></dt><dd><a id="active-R6MemberRestriction-id"></a><p>Unique identifier of the
+<code>R6MemberRestriction</code>.
+By default, this is part of messages when using the
+<a href="#method-R6MemberRestriction-check"><code>check</code></a> method to evaluate the restriction.
+<br>
+Identifiers help distinguish between multiple restrictions and make debugging easier.
+<br>
+<br><em>Must not be empty string.</em></p>
+
+<table>
+<tr>
+ <td style="text-align: left;">
+    </td><td style="text-align: left;">  </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Type:   </td><td style="text-align: left;"> character          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Default:  </td><td style="text-align: left;"> <code>format(Sys.time(), "%Y-%M-%d - %H:%M:%S")</code>   </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Affected methods: </td><td style="text-align: left;"> <a href="#method-R6MemberRestriction-check"><code>check</code></a> 
+</td>
+</tr>
+
+</table>
+
+
+<br>
+</dd>
+<dt><code>restriction</code></dt><dd><a id="active-R6MemberRestriction-restriction"></a><p>A
+<code>function</code>
+representing the validation rule for a
+<code>value</code>.
+<br>
+It must take a single argument and
+return a single
+<code>logical</code>
+value indicating if its argument meets the criteria (<code>TRUE</code>) or not (<code>FALSE</code>).
+<br>
+Alternatively, it may throw an error <em>if the criteria are not met</em> to provide more detailed information.
+<br>
+The function should be designed to handle various input types gracefully,
+as it will be tested with multiple sample inputs during initialization.
+<br>
+Common patterns include type checking, length validation, range checking, and value constraints.
+<br>
+<br><em>This function is applied by method  <a href="#method-R6MemberRestriction-check"><code>check</code></a>  to enforce the validation rule.</em></p>
+
+<table>
+<tr>
+ <td style="text-align: left;">
+    </td><td style="text-align: left;">  </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Type:   </td><td style="text-align: left;"> function          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Default:  </td><td style="text-align: left;"> <code>function(x) TRUE</code>       </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Affected methods: </td><td style="text-align: left;"> <a href="#method-R6MemberRestriction-check"><code>check</code></a> 
+</td>
+</tr>
+
+</table>
+
+
+<br>
+</dd>
+</dl>
+
+</div>
+
+
+<h3>Methods</h3>
+
+
+
+<h4>Public methods</h4>
+
+
+<ul>
+<li> <p><a href="#method-R6MemberRestriction-check"><code>R6MemberRestriction$check()</code></a>
+</p>
+</li>
+<li> <p><a href="#method-R6MemberRestriction-new"><code>R6MemberRestriction$new()</code></a>
+</p>
+</li>
+<li> <p><a href="#method-R6MemberRestriction-print"><code>R6MemberRestriction$print()</code></a>
+</p>
+</li>
+<li> <p><a href="#method-R6MemberRestriction-clone"><code>R6MemberRestriction$clone()</code></a>
+</p>
+</li></ul>
+
+
+<hr>
+<a id="method-R6MemberRestriction-check"></a>
+
+
+
+<h4>Method <code>check()</code></h4>
+
+
+
+<h5>Usage</h5>
+
+<div class="r"><pre>R6MemberRestriction$check(value, include_id = TRUE, include_value = TRUE)</pre></div>
+
+
+
+<h5>Arguments</h5>
+
+<div class="arguments">
+
+<dl>
+<dt><code>value</code></dt><dd><a id="value"></a><p>The value for which to check if it meets the
+<a href="#active-R6MemberRestriction-restriction"><code>restriction</code></a>.</p>
+
+<table>
+<tr>
+ <td style="text-align: left;">
+    </td><td style="text-align: left;">  </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Type:   </td><td style="text-align: left;"> any           
+</td>
+</tr>
+
+</table>
+
+
+<br>
+</dd>
+<dt><code>include_id</code></dt><dd><a id="include_id"></a><p>Whether to include the restriction's
+<a href="#active-R6MemberRestriction-id"><code>id</code></a>
+in the output message.
+<br>
+When <code>TRUE</code> (the default), error messages will be prefixed with the restriction identifier,
+making it easier to identify which validation rule failed when multiple restrictions are in use.</p>
+
+<table>
+<tr>
+ <td style="text-align: left;">
+    </td><td style="text-align: left;">  </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Type:   </td><td style="text-align: left;"> logical          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Default:  </td><td style="text-align: left;"> <code>TRUE</code>         
+</td>
+</tr>
+
+</table>
+
+
+<br>
+</dd>
+<dt><code>include_value</code></dt><dd><a id="include_value"></a><p>Whether to include the
+<code>value</code>
+in the output message.
+<br>
+When <code>TRUE</code> (the default), the value being checked will be included in error messages,
+helping you understand what value failed the validation.
+This is particularly useful for debugging, but can be set to <code>FALSE</code> if you want
+more concise error messages.</p>
+
+<table>
+<tr>
+ <td style="text-align: left;">
+    </td><td style="text-align: left;">  </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Type:   </td><td style="text-align: left;"> logical          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Default:  </td><td style="text-align: left;"> <code>TRUE</code>         
+</td>
+</tr>
+
+</table>
+
+
+<br>
+</dd>
+</dl>
+
+</div>
+
+
+
+<h5>Details</h5>
+
+<p>Check whether a given <code>value</code> satisfies the <a href="#active-R6MemberRestriction-restriction"><code>restriction</code></a>.
+<br><em>This is the core method of <code>R6MemberRestriction</code> objects.</em>
+</p>
+<p>This method executes the restriction function against the provided value and returns
+a list containing both the validation decision (<code>TRUE</code> or <code>FALSE</code>) and any error
+messages that may have been generated. The method automatically formats error information
+to include the restriction identifier and the problematic value (if requested).
+</p>
+
+
+
+<h5>Returns</h5>
+
+<p><code>list</code>
+with entries</p>
+
+<table>
+<tr>
+ <td style="text-align: left;">
+    </td><td style="text-align: left;">  </td><td style="text-align: left;">  </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   decision </td><td style="text-align: left;"> <code>(logical)</code>  </td><td style="text-align: left;"> indicator whether  the <code>value</code> meets (<code>TRUE</code>) or violates (<code>FALSE</code>) the <a href="#active-R6MemberRestriction-restriction"><code>restriction</code></a>. </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   message </td><td style="text-align: left;"> <code>(character)</code> </td><td style="text-align: left;"> error message resulting from <a href="#active-R6MemberRestriction-restriction"><code>restriction</code></a> (if any), or empty string otherwise  
+</td>
+</tr>
+
+</table>
+
+
+
+<hr>
+<a id="method-R6MemberRestriction-new"></a>
+
+
+
+<h4>Method <code>new()</code></h4>
+
+
+
+<h5>Usage</h5>
+
+<div class="r"><pre>R6MemberRestriction$new(
+  id = format(Sys.time(), "%Y-%M-%d - %H:%M:%S"),
+  restriction = function(x) TRUE
+)</pre></div>
+
+
+
+<h5>Arguments</h5>
+
+<div class="arguments">
+
+<dl>
+<dt><code>id</code></dt><dd><a id="sec-params"></a>
+<a id="active-R6MemberRestriction-id"></a><p>Unique identifier of the
+<code>R6MemberRestriction</code>.
+By default, this is part of messages when using the
+<a href="#method-R6MemberRestriction-check"><code>check</code></a> method to evaluate the restriction.
+<br>
+Identifiers help distinguish between multiple restrictions and make debugging easier.
+<br>
+<br><em>Must not be empty string.</em></p>
+
+<table>
+<tr>
+ <td style="text-align: left;">
+    </td><td style="text-align: left;">  </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Type:   </td><td style="text-align: left;"> character          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Default:  </td><td style="text-align: left;"> <code>format(Sys.time(), "%Y-%M-%d - %H:%M:%S")</code>   </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Affected methods: </td><td style="text-align: left;"> <a href="#method-R6MemberRestriction-check"><code>check</code></a> 
+</td>
+</tr>
+
+</table>
+
+
+<br>
+</dd>
+<dt><code>restriction</code></dt><dd><a id="active-R6MemberRestriction-restriction"></a><p>A
+<code>function</code>
+representing the validation rule for a
+<code>value</code>.
+<br>
+It must take a single argument and
+return a single
+<code>logical</code>
+value indicating if its argument meets the criteria (<code>TRUE</code>) or not (<code>FALSE</code>).
+<br>
+Alternatively, it may throw an error <em>if the criteria are not met</em> to provide more detailed information.
+<br>
+The function should be designed to handle various input types gracefully,
+as it will be tested with multiple sample inputs during initialization.
+<br>
+Common patterns include type checking, length validation, range checking, and value constraints.
+<br>
+<br><em>This function is applied by method  <a href="#method-R6MemberRestriction-check"><code>check</code></a>  to enforce the validation rule.</em></p>
+
+<table>
+<tr>
+ <td style="text-align: left;">
+    </td><td style="text-align: left;">  </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Type:   </td><td style="text-align: left;"> function          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Default:  </td><td style="text-align: left;"> <code>function(x) TRUE</code>       </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Affected methods: </td><td style="text-align: left;"> <a href="#method-R6MemberRestriction-check"><code>check</code></a> 
+</td>
+</tr>
+
+</table>
+
+
+<br>
+</dd>
+</dl>
+
+</div>
+
+
+
+<h5>Details</h5>
+
+<p>Construct a new <code>R6MemberRestriction</code> object
+with
+identifier <code>R6MemberRestriction</code>
+and
+restriction <code>R6MemberRestriction</code>
+</p>
+<p>Creates a new <code>R6MemberRestriction</code> object with the specified validation function
+and a unique identifier. The restriction function is validated during initialization
+to ensure it properly returns logical values and can handle various input types.
+</p>
+
+
+
+<h5>Returns</h5>
+
+<p><code>R6MemberRestriction</code> object.
+The newly created object has the <a href="#active-R6MemberRestriction-id"><code>id</code></a> and <a href="#active-R6MemberRestriction-restriction"><code>restriction</code></a>
+fields initialized and ready for use with the <a href="#method-R6MemberRestriction-check"><code>check</code></a> method.
+</p>
+
+
+<hr>
+<a id="method-R6MemberRestriction-print"></a>
+
+
+
+<h4>Method <code>print()</code></h4>
+
+
+
+<h5>Usage</h5>
+
+<div class="r"><pre>R6MemberRestriction$print(restriction_level = 2)</pre></div>
+
+
+
+<h5>Arguments</h5>
+
+<div class="arguments">
+
+<dl>
+<dt><code>restriction_level</code></dt><dd><a id="restriction_level"></a><p>The amount of information about
+the
+<code>R6MemberRestriction</code>
+to be printed.
+One of:</p>
+
+<table>
+<tr>
+ <td style="text-align: right;">
+    </td><td style="text-align: center;">  </td><td style="text-align: left;">  </td>
+</tr>
+<tr>
+ <td style="text-align: right;">
+     <code>0</code> </td><td style="text-align: center;">  </td><td style="text-align: left;"> print nothing        </td>
+</tr>
+<tr>
+ <td style="text-align: right;">
+     <code>1</code> </td><td style="text-align: center;">  </td><td style="text-align: left;"> print <a href="#active-R6MemberRestriction-id"><code>id</code></a> </td>
+</tr>
+<tr>
+ <td style="text-align: right;">
+     <code>2</code> </td><td style="text-align: center;">  </td><td style="text-align: left;"> print <a href="#active-R6MemberRestriction-id"><code>id</code></a> and <a href="#active-R6MemberRestriction-restriction"><code>restriction function</code></a> 
+</td>
+</tr>
+
+</table>
+
+
+<table>
+<tr>
+ <td style="text-align: left;">
+    </td><td style="text-align: left;">  </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Type:   </td><td style="text-align: left;"> integer          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Default:  </td><td style="text-align: left;"> <code>2</code>          
+</td>
+</tr>
+
+</table>
+
+
+<br>
+</dd>
+</dl>
+
+</div>
+
+
+
+<h5>Details</h5>
+
+<p>Print method for <code>R6MemberRestriction</code> objects that
+displays information about the restriction (<a href="#active-R6MemberRestriction-id"><code>id</code></a> and
+<a href="#active-R6MemberRestriction-restriction"><code>restriction</code></a>) in a human-readable format.
+</p>
+<p>This method is useful for debugging and understanding the structure of
+validation rules, especially when working with multiple restrictions
+combined in a <code>R6MemberList</code>.
+</p>
+
+
+
+<h5>Returns</h5>
+
+<p><code>NULL</code> (invisibly). The method is called for its side effect of printing.
+</p>
+
+
+<hr>
+<a id="method-R6MemberRestriction-clone"></a>
+
+
+
+<h4>Method <code>clone()</code></h4>
+
+<p>The objects of this class are cloneable with this method.
+</p>
+
+
+<h5>Usage</h5>
+
+<div class="r"><pre>R6MemberRestriction$clone(deep = FALSE)</pre></div>
+
+
+
+<h5>Arguments</h5>
+
+<div class="arguments">
+
+<dl>
+<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p>
+</dd>
+</dl>
+
+</div>
+
+
+
+</main>
+
+</div>
+</body></html>

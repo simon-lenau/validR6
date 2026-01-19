@@ -1,0 +1,19 @@
+```{r,eval=TRUE,echo=FALSE,results="asis"}
+.doc_arg(
+    type = "logical",
+    description = c(
+        "Whether to include the",
+        .doc_phrase_value(),
+        "in the output message.",
+        "<br>",
+        "When `TRUE` (the default), the value being checked will be included in error messages,",
+        "helping you understand what value failed the validation.",
+        "This is particularly useful for debugging, but can be set to `FALSE` if you want",
+        "more concise error messages."
+    ),
+    default = TRUE
+)
+```
+
+
+

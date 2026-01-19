@@ -1,0 +1,16 @@
+```{r,eval=TRUE,echo=FALSE,results="asis"}
+.doc_arg(
+    type = "character",
+    description = c(
+        "The private internal name of the",
+        .doc_ref_self(),
+        "object.",
+        "This is the name used to store the member in the private environment of the",
+        .doc_r6class(),
+        ".",
+        "It is constructed from the public name with a prefix (default: `.`) and optional suffix.",
+        .doc_fmt_highlight("This is a read-only field and is automatically computed from the public name.")
+    )
+)
+```
+

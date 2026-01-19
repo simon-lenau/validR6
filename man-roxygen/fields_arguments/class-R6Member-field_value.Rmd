@@ -1,0 +1,16 @@
+
+
+ ```{r,eval=TRUE,echo=FALSE,results="asis"}
+.doc_arg(
+    type = paste(
+        "See",
+        .doc_ref_section("active bindings"),
+        "for the valid type of each field."
+    ),
+    description = c(
+        "Optional new value for field `<field_name>`.",
+        "If omitted the method returns the current field contents.",
+        "If provided the `field_value` is validated and assigned to the field."
+    )
+)
+ ```

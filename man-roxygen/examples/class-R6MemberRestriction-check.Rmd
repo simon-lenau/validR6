@@ -1,0 +1,12 @@
+
+```{r}
+# ====================== > Check R6MemberRestrictions < ====================== #
+
+# Restriction is met
+length_restriction$check(1:2)
+type_restriction$check(letters[1:5])
+
+# Restriction is violated
+length_restriction$check(1:5)
+type_restriction$check(1:5)
+```

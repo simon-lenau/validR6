@@ -1,0 +1,17 @@
+stages:
+  - push
+
+push_to_github:
+  stage: push
+  image: alpine:latest
+  variables:
+    GITHUB_REPO: "validR6"
+  script:
+    - apk add --no-cache git
+    - git config user.email "${GITHUB_EMAIL}"
+    - git config user.name "CI Bot"
+    - git fetch origin main
+    - git remote add github https://${GITHUB_TOKEN}@github.com/${GITHUB_USER}/${GITHUB_REPO}.git
+    - git push github origin/main:main
+  only:
+    - main

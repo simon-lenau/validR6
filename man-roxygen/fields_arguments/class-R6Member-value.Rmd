@@ -1,0 +1,26 @@
+
+ ```{r,eval=TRUE,echo=FALSE,results="asis"}
+.doc_arg(
+    type = "any",
+    default = NULL,
+    description = c(
+        "Value of the",
+        .doc_ref_self(),
+        "object.",
+        "Can be any R object (vector, list, function, etc.).",
+        "If a function is assigned, the",
+        .doc_ref(tag = "is_method"),
+        "field is automatically set to",
+        .doc_value("TRUE"),
+        ".",
+        "It must meet all",
+        .doc_ref(tag = "restrictions"),
+        "unless it is",
+        .doc_value_NULL(),
+        ".",
+        "Any attempt to modify the value is first validated against all",
+        .doc_ref(tag = "restrictions"),
+        "before the assignment is accepted."
+    )
+)
+ ```

@@ -1,0 +1,30 @@
+
+
+ ```{r,eval=TRUE,echo=FALSE,results="asis"}
+.doc_arg(
+
+    type = "logical",
+    description = c(
+        "Determines whether the ",
+        .doc_ref_self(),
+        "becomes a private member of the",
+        .doc_r6class(),
+        ".",
+        "<br>",
+        "If `TRUE`, the member is only accessible within the",
+        .doc_r6class(),
+        "object (e.g., in methods) and not exposed in the public interface.",
+        "In this case, ",
+        .doc_ref(tag = "declare_active_binding"),
+        "and",
+        .doc_ref(tag = "declare_method"),
+        "will return",
+        .doc_value_NULL(),
+        ". If `FALSE` (the default), the member is public and can be accessed externally."
+    ),
+    affected_methods = "^declare_"
+)
+ ```
+
+
+

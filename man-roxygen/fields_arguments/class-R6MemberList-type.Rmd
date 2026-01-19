@@ -1,0 +1,10 @@
+ ```{r,eval=TRUE,echo=FALSE,results="asis"}
+.doc_arg(
+    type = "character",
+    default = "public",
+    description = c(
+        "The type of names to be returned.",
+        r"--(One of `c("public", "private")`.)--"
+    )
+)
+ ```

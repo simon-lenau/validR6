@@ -1,0 +1,58 @@
+
+
+
+
+<!-- ```{r,child = "../examples/class-R6MemberList-initialize.Rmd",eval=TRUE,echo=TRUE}
+``` -->
+
+
+```{r,eval=TRUE,echo=FALSE,results="asis"}
+.doc_arg(
+    type = paste(.doc_fmt_cslist(.doc_type_character(), .doc_type_function(), .doc_value_NULL(), last = " or "), "(See above.)"),
+    default = "default",
+    description =
+        c(
+            "The print method to use for the",
+            .doc_r6class(),
+            "to be defined.",
+            "May be one of the following:",
+            .doc_tbl(
+                rbind(
+                    c(
+                        paste(
+                            '`"none"` or', .doc_value_NULL()
+                        ),
+                        paste(
+                            "No own print method is specified.",
+                            "The parent class' print method is inherited."
+                        )
+                    ),
+                    c(
+                        paste(
+                            '`"default"`'
+                        ),
+                        paste0(
+                            "A default print method is used."
+                        )
+                    ),
+                    c(.doc_type_function(), "The provided function will be used as print method.")
+                ),
+                width = c(90, 40)
+            )
+        )
+)
+
+cat("\n\n**The `\"default\"` print method**\n<br>\n") 
+cat("takes the same arguments as")
+.doc_ref_method(topic="R6Member",tag="print")
+cat(", namely",.doc_fmt_cslist(paste0("`",names(formals(R6Member$public_methods$print)),"`")),".")
+cat("\n<br>\nIt generates output like in the following example:\n<br>")
+
+R6Class_example <- R6MemberList_example$R6Class("ExampleR6Class")$new()
+cat("\\preformatted{\n\n")
+R6Class_example$print()
+cat("}\n\n")
+
+
+rm(list = "R6Class_example")
+```

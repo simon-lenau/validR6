@@ -1,0 +1,28 @@
+```{r,eval=TRUE,echo=FALSE,results="asis"}
+.doc_arg(
+    type = "character",
+    default = format(Sys.time(), "%Y-%M-%d - %H:%M:%S"),
+    description = c(
+        "Unique identifier of the",
+        .doc_ref_self(),
+        ".",
+        "By default, this is part of messages when using the",
+        paste(
+            .doc_ref(
+                tag = "check",
+            ),
+            "method to evaluate the restriction."
+        ),
+        "<br>",
+        "Identifiers help distinguish between multiple restrictions and make debugging easier.",
+        "<br>",
+        .doc_fmt_highlight(
+            "Must not be empty string."
+        )
+    ),
+    affected_methods = c("check")
+)
+```
+
+
+

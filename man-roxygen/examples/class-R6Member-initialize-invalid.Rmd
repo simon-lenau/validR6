@@ -1,0 +1,14 @@
+ ```{r}
+# Initial value would violate restrictions
+try({
+R6Member_invalid <-
+    R6Member$new(
+        name = "example_member",
+        value = 1:5,
+        restrictions = list(
+                "is length 2" = length_restriction,
+                "is character" = type_restriction
+        )
+    )
+})
+```

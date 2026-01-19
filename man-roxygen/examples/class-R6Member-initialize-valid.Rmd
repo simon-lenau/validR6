@@ -1,0 +1,24 @@
+ ```{r}
+# =========================== > Create R6Members < =========================== #
+
+# R6Member object without restriction(s):
+#   may take any value
+R6Member_any <-
+    R6Member$new(
+        name = "example_member_any",
+        value = 1:5
+    )
+
+# R6Member object with restriction(s):
+#   all restriction(s) check(s) must return TRUE
+R6Member_two_string <-
+    R6Member$new(
+        name = "example_member_char_len2",
+        value = c("foo", "bar"),
+        restrictions = list(
+                "is length 2" = length_restriction,
+                "is character" = type_restriction
+        )
+    )
+```
+

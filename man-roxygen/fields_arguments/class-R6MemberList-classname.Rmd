@@ -1,0 +1,18 @@
+
+
+ ```{r,eval=TRUE,echo=FALSE,results="asis"}
+.doc_arg(
+    type = "character",
+    description =
+        c(
+            "Name of the",
+            .doc_r6class(suffix = ""),
+            "to be defined.",
+            "See also the documentation of argument",
+            .doc_ref(tag = "classname", topic = "R6Class", namespace = "R6", text = "\\code{classname}", , code = FALSE, prefix = "'", suffix = "'"),
+            "in",
+            .doc_ref_help(topic = "r6class"),
+            "."
+        )
+)
+ ```

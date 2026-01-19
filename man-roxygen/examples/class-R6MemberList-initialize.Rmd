@@ -1,0 +1,11 @@
+ ```{r}
+# ========================= > Create R6MemberList < ========================== #
+
+R6MemberList_example <-
+    R6MemberList$new(
+        # R6Member object without restrictions
+        R6Member_any,
+        # R6Member object with restriction(s)
+        R6Member_two_string
+    )
+```

@@ -1,0 +1,17 @@
+
+
+ ```{r,eval=TRUE,echo=FALSE,results="asis"}
+.doc_arg(
+    type = "character",
+    description =
+        c(
+            "The name of the internal field to be accessed.",
+            "<br>",
+            "See",
+            .doc_ref_section("active bindings"),
+            "for a list of all fields in",
+            .doc_ref_self(),
+            "objects."
+        )
+)
+ ```

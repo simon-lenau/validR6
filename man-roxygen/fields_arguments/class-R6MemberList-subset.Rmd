@@ -1,0 +1,14 @@
+ ```{r,eval=TRUE,echo=FALSE,results="asis"}
+.doc_arg(
+    type = "character",
+    default = "all",
+    description = c(
+        "The subset of",
+        .doc_r6member(),
+        "names from the",
+        .doc_r6memberlist(),
+        "to be returned.",
+        r"--(One of `c("all", "public", "private")`.)--"
+    )
+)
+ ```

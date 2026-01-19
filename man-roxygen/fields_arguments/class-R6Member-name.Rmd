@@ -1,0 +1,23 @@
+
+
+
+
+```{r,eval=TRUE,echo=FALSE,results="asis"}
+.doc_arg(
+    type = "character",
+    description = c(
+        "Name of the",
+        .doc_ref_self(),
+        "object.",
+        "This name serves as the identifier for the member in the",
+        .doc_r6class(),
+        "definition.",
+        .doc_fmt_highlight(
+            "Must be a valid R variable name and not be empty."
+        ),
+        "The name is used to generate member declarations in public, private, and active binding contexts."
+    ),
+    affected_methods = "^declare_"
+)
+```
+

@@ -1,0 +1,9 @@
+```{r,eval=TRUE,echo=FALSE,results="asis"}
+.doc_arg(
+    type = "logical",
+    description = c(
+        "Whether the class name (", .doc_ref_self(), ") should be included when printing."
+    )
+)
+```
+

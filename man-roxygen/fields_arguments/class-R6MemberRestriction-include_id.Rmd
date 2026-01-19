@@ -1,0 +1,19 @@
+```{r,eval=TRUE,echo=FALSE,results="asis"}
+.doc_arg(
+    type = "logical",
+    description = c(
+        "Whether to include the restriction's",
+        .doc_ref(
+            tag = "id"
+        ),
+        "in the output message.",
+        "<br>",
+        "When `TRUE` (the default), error messages will be prefixed with the restriction identifier,",
+        "making it easier to identify which validation rule failed when multiple restrictions are in use."
+    ),
+    default = TRUE
+)
+```
+
+
+

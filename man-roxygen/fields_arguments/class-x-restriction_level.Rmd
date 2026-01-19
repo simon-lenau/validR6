@@ -1,0 +1,89 @@
+```{r,eval=TRUE,echo=FALSE,results="asis"}
+
+# Determine the class this is rendered for
+is_R6Member <-
+    knitr::opts_current$get(".doc_class_name") == "R6Member"
+is_R6MemberRestriction <-
+    knitr::opts_current$get(".doc_class_name") == "R6MemberRestriction"
+
+# Set plural-s if not a single `R6MemberRestriction`
+singular_plural <-
+    if (!is_R6MemberRestriction) {
+        "s"
+    } else {
+        NULL
+    }
+
+# Set the field's parent reference
+ref_parent <-
+    if (is_R6MemberRestriction) {
+        .doc_ref_self()
+    } else {
+        .doc_ref(
+            tag = "restrictions"
+        )
+    }
+
+# Set id field reference
+ref_id <- paste(
+    .doc_ref(
+        tag = "id",
+        topic = "R6MemberRestriction",
+        text = "id",
+        suffix = singular_plural
+    )
+)
+# Set restriction field reference
+ref_restriction <-
+    .doc_ref(
+        tag = "restriction",
+        topic = "R6MemberRestriction",
+        text = "restriction function",
+        suffix = singular_plural
+    )
+
+# Output argument documentation
+.doc_arg(
+    type = "integer",
+    description = c(
+        "The amount of information about",
+        if (!is.null(singular_plural)) {
+            "each of"
+        },
+        "the",
+        ref_parent,
+        "to be printed.",
+        "One of:",
+        .doc_tbl(
+            rbind(
+                # No information is printed
+                c(
+                    "`0`",
+                    "",
+                    .doc_fmt_print_what()
+                ),
+                # `id` is printed
+                c(
+                    "`1`",
+                    "",
+                    .doc_fmt_print_what(
+                        ref_id
+                    )
+                ),
+                # `id` and `restriction` are printed
+                c(
+                    "`2`",
+                    "",
+                    .doc_fmt_print_what(
+                        ref_id,
+                        ref_restriction
+                    )
+                )
+            ),
+            width = c(15, 2, 60),
+            alignment = c("r", "c", "l")
+        ),
+        ""
+    )
+)
+```

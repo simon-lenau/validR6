@@ -1,0 +1,11 @@
+ ```{r,eval=TRUE,echo=FALSE,results="asis"}
+ .doc_arg(
+     type = .doc_r6member(),
+     description = c(
+        .doc_r6member(),
+        "objects to be combined in the",
+        .doc_ref_self(),
+        .doc_fmt_highlight("Objects of other types are not accepted.")
+     )
+ )
+ ```

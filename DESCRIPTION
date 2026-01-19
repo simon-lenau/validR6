@@ -1,0 +1,37 @@
+Package: validR6
+Type: Package
+Title: Validation Framework for Members in 'R6::R6Class'
+Version: 1.0
+Date: 2025-09-19
+Maintainer: Simon Lenau <lenau@cispa.de>
+Description: Validation framework to ensure that members in 'R6::R6Class' objects match 
+    formalized validation criteria, e.g. in term of type, structure or content.
+License: GPL (>= 3)
+Authors@R: person(given = "Simon",
+                family = "Lenau",
+                role = c("aut", "cre"),
+                email = "lenau@cispa.de")
+RoxygenNote: 7.3.2
+Roxygen: list(markdown = TRUE,r6=TRUE)
+Config/roxygen/load: man-roxygen/_roxygen_setup.R
+Encoding: UTF-8
+Depends:
+    R (>= 4.3.0)
+Imports:
+    R6
+Suggests:
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Collate: 
+    'internals-.capture.R'
+    'class-R6Member.R'
+    'class-R6MemberList.R'
+    'internals-.indent.R'
+    'class-R6MemberRestriction.R'
+    'internals-.check_if.R'
+    'internals-.cut_string.R'
+    'methods-S3-R6MemberList.R'
+    'validR6_package.R'
+VignetteBuilder: knitr

@@ -1,0 +1,7 @@
+ ```{r,eval=TRUE,echo=FALSE,results="asis"}
+.doc_arg(
+    type = "logical",
+    default = FALSE,
+    description = r"(Whether to include a print method (rather than manually declaring it))"
+)
+```

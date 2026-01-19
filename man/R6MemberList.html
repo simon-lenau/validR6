@@ -1,0 +1,762 @@
+<!DOCTYPE html><html><head><title>R: 'R6MemberList': Wrapping toolbox for using 'R6Members' in...</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+<script>
+const macros = { "\\R": "\\textsf{R}", "\\mbox": "\\text", "\\code": "\\texttt"};
+function processMathHTML() {
+    var l = document.getElementsByClassName('reqn');
+    for (let e of l) { katex.render(e.textContent, e, { throwOnError: false, macros }); }
+    return;
+}</script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"
+    onload="processMathHTML();"></script>
+<link rel="stylesheet" type="text/css" href="R.css">
+</head><body><div class="container"><main>
+
+<table style="width: 100%;"><tr><td>R6MemberList</td><td style="text-align: right;">R Documentation</td></tr></table>
+
+<h2><a id="R6MemberList"></a>
+<code>R6MemberList</code>:
+Wrapping toolbox for using
+<code>R6Members</code>
+in <code>R6Class</code> definitions.</h2>
+
+<h3>Description</h3>
+
+<p>A <code>R6MemberList</code> provides utility
+<a href="#method-R6MemberList-active_bindings">methods</a>
+for declaring
+<code>R6Classes</code> with members wrapped in
+<code>R6Member</code> objects.
+As such, the <code>R6MemberList</code> encloses zero or more
+<code>R6Member</code> objects that
+define the members in
+a <code>R6Class</code>.
+<br>
+The core method for this purpose is <a href="#method-R6MemberList-R6Class"><code>$R6Class()</code></a>.
+</p>
+
+
+<h3><a id="sec-R6MemberList-details">Details</a></h3>
+
+<p>Once a <code>R6MemberList</code> is instanciated,
+the
+<a href="#method-R6MemberList-R6Class"><code>$R6Class()</code></a>
+method can be used
+to define a <code>R6Class</code>
+and delegate the enclosed
+<code>R6Member</code> objects
+as members to this new <code>R6Class</code>.
+</p>
+<p>The core method for this purpose is <a href="#method-R6MemberList-R6Class"><code>$R6Class()</code></a>,
+which calls the worker methods
+<a href="#method-R6MemberList-public_list"><code>$public_list()</code></a>,  <a href="#method-R6MemberList-private_list"><code>$private_list()</code></a> and <a href="#method-R6MemberList-active_bindings"><code>$active_bindings()</code></a>.
+These set up the <code>lists</code> defining the arguments
+<code>public</code>,  <code>private</code> and <code>active</code>
+for the call to <code>R6::R6Class()</code>.
+</p>
+
+
+<h4><a id="sec-R6MemberList-details-names">Retrieving private and public names</a></h4>
+
+<p>Use <a href="#method-R6MemberList-names"><code>$names()</code></a> to retrieve public or private member names
+of the <code>R6Member</code> objects in the <code>R6Class</code>
+created by <a href="#method-R6MemberList-R6Class"><code>$R6Class()</code></a>.
+</p>
+
+
+
+<h4><a id="sec-R6MemberList-details-subsetting">Subsetting</a></h4>
+
+<p>The
+<a href="#method-R6MemberList-select"><code>$select()</code></a> method
+allows access to the enclosed <code>R6Member</code> objects
+by name.
+Alternatively, the <code>S3-operators</code>
+<code>[</code> and <code>[[</code>
+allow subsetting for <code>R6MemberList</code> as well.
+</p>
+<p>See the
+<a href="#method-R6MemberList-new">methods</a> and <a href="#sec-R6MemberList-examples">examples</a>
+section for more details and examples.
+</p>
+
+
+
+<h3><a id="sec-R6MemberList-examples">Examples</a></h3>
+
+<div class="sourceCode r"><pre># ===================== &gt; Create R6MemberRestrictions &lt; ====================== #
+
+# Restriction that checks if length of value equals 2
+length_restriction &lt;-
+    R6MemberRestriction$new(
+        id = "Length check",
+        restriction = function(x) {
+            if (length(x) != 2) {
+                stop("Length should be 2!")
+            }
+            return(TRUE)
+        }
+    )
+
+# Restriction that checks if type of value is "character"
+type_restriction &lt;-
+    R6MemberRestriction$new(
+        id = "Type check",
+        restriction = function(x) {
+            if (typeof(x) != "character") {
+                stop("type should be character!")
+            }
+            return(TRUE)
+        }
+    )
+</pre></div>
+<div class="sourceCode r"><pre># =========================== &gt; Create R6Members &lt; =========================== #
+
+# R6Member object without restriction(s):
+#   may take any value
+R6Member_any &lt;-
+   R6Member$new(
+       name = "example_member_any",
+       value = 1:5
+   )
+
+# R6Member object with restriction(s):
+#   all restriction(s) check(s) must return TRUE
+R6Member_two_string &lt;-
+   R6Member$new(
+       name = "example_member_char_len2",
+       value = c("foo", "bar"),
+       restrictions = list(
+               "is length 2" = length_restriction,
+               "is character" = type_restriction
+       )
+   )
+</pre></div>
+<div class="sourceCode r"><pre># ========================= &gt; Create R6MemberList &lt; ========================== #
+
+R6MemberList_example &lt;-
+   R6MemberList$new(
+       # R6Member object without restrictions
+       R6Member_any,
+       # R6Member object with restriction(s)
+       R6Member_two_string
+   )
+</pre></div>
+
+
+<h3>Methods</h3>
+
+
+
+<h4>Public methods</h4>
+
+
+<ul>
+<li> <p><a href="#method-R6MemberList-new"><code>R6MemberList$new()</code></a>
+</p>
+</li>
+<li> <p><a href="#method-R6MemberList-active_bindings"><code>R6MemberList$active_bindings()</code></a>
+</p>
+</li>
+<li> <p><a href="#method-R6MemberList-R6Class"><code>R6MemberList$R6Class()</code></a>
+</p>
+</li>
+<li> <p><a href="#method-R6MemberList-public_list"><code>R6MemberList$public_list()</code></a>
+</p>
+</li>
+<li> <p><a href="#method-R6MemberList-private_list"><code>R6MemberList$private_list()</code></a>
+</p>
+</li>
+<li> <p><a href="#method-R6MemberList-print"><code>R6MemberList$print()</code></a>
+</p>
+</li>
+<li> <p><a href="#method-R6MemberList-names"><code>R6MemberList$names()</code></a>
+</p>
+</li>
+<li> <p><a href="#method-R6MemberList-select"><code>R6MemberList$select()</code></a>
+</p>
+</li>
+<li> <p><a href="#method-R6MemberList-clone"><code>R6MemberList$clone()</code></a>
+</p>
+</li></ul>
+
+
+<hr>
+<a id="method-R6MemberList-new"></a>
+
+
+
+<h4>Method <code>new()</code></h4>
+
+<p>Construct a new <code>R6MemberList</code> object
+from the supplied <code>R6Member</code> objects.
+</p>
+
+
+<h5>Usage</h5>
+
+<div class="r"><pre>R6MemberList$new(...)</pre></div>
+
+
+
+<h5>Arguments</h5>
+
+<div class="arguments">
+
+<dl>
+<dt><code>...</code></dt><dd><a id="dots"></a><p><code>R6Member</code>
+objects to be combined in the
+<code>R6MemberList</code>
+<br><em>Objects of other types are not accepted.</em></p>
+
+<table>
+<tr>
+ <td style="text-align: left;">
+    </td><td style="text-align: left;">  </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Type:   </td><td style="text-align: left;"> <code>R6Member</code> 
+</td>
+</tr>
+
+</table>
+
+
+ <br>
+</dd>
+</dl>
+
+</div>
+
+
+
+<h5>Returns</h5>
+
+<p><code>R6MemberList</code> object containing the provided
+<code>R6Member</code> objects.
+</p>
+
+
+<hr>
+<a id="method-R6MemberList-active_bindings"></a>
+
+
+
+<h4>Method <code>active_bindings()</code></h4>
+
+<p>Create named <code>list</code> that represent the active bindings provided by the stored <code>R6Members</code>. <br> To be used as argument '<code>active</code>' in <code>R6Class()</code> definition. <br><em>See also the documentation of argument '<code>active</code>' in <code>?R6Class</code> .</em>
+</p>
+
+
+<h5>Usage</h5>
+
+<div class="r"><pre>R6MemberList$active_bindings()</pre></div>
+
+
+
+<h5>Returns</h5>
+
+<p>A named <code>list</code> that represent the active bindings provided by the stored <code>R6Members</code>. <br> To be used as argument '<code>active</code>' in <code>R6Class()</code> definition.
+</p>
+
+
+<hr>
+<a id="method-R6MemberList-R6Class"></a>
+
+
+
+<h4>Method <code>R6Class()</code></h4>
+
+<p>Declare <code>R6Class</code> from <code>R6MemberList</code>
+</p>
+
+
+<h5>Usage</h5>
+
+<div class="r"><pre>R6MemberList$R6Class(classname, print_method = "default")</pre></div>
+
+
+
+<h5>Arguments</h5>
+
+<div class="arguments">
+
+<dl>
+<dt><code>classname</code></dt><dd><a id="classname"></a><p>Name of the
+<code>R6Class</code>
+to be defined.
+See also the documentation of argument
+'<code>classname</code>'
+in
+<code>?R6Class</code>.</p>
+
+<table>
+<tr>
+ <td style="text-align: left;">
+    </td><td style="text-align: left;">  </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Type:   </td><td style="text-align: left;"> character          
+</td>
+</tr>
+
+</table>
+
+
+ <br>
+</dd>
+<dt><code>print_method</code></dt><dd>
+<!-- ```{r,child = "../examples/class-R6MemberList-initialize.Rmd",eval=TRUE,echo=TRUE}
+``` -->
+
+<a id="print_method"></a><p>The print method to use for the
+<code>R6Classes</code>
+to be defined.
+May be one of the following:</p>
+
+<table>
+<tr>
+ <td style="text-align: left;">
+    </td><td style="text-align: left;">  </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   <code>"none"</code> or <code>NULL</code> </td><td style="text-align: left;"> No own print method is specified. The parent class' print method is inherited. </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   <code>"default"</code>              </td><td style="text-align: left;"> A default print method is used.  </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   <code>function</code> </td><td style="text-align: left;"> The provided function will be used as print method. 
+</td>
+</tr>
+
+</table>
+
+
+<table>
+<tr>
+ <td style="text-align: left;">
+    </td><td style="text-align: left;">  </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Type:   </td><td style="text-align: left;"> <code>character</code>,  <code>function</code> or  <code>NULL</code> (See above.) </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Default:  </td><td style="text-align: left;"> <code>"default"</code>        
+</td>
+</tr>
+
+</table>
+
+
+<br>
+
+<p><strong>The <code>"default"</code> print method</strong>
+<br>
+takes the same arguments as<code>R6Member$print()</code>, namely <code>value_level</code>,  <code>restriction_level</code> and <code>print_class</code> .
+<br>
+It generates output like in the following example:
+<br></p>
+<pre>
+
+Object of class(es)
+   `"ExampleR6Class"`
+Members:
+R6Member example_member_any
+   Value:
+      `1:5` 
+R6Member example_member_char_len2
+   Value:
+      `c("foo", "bar")` 
+
+</pre></dd>
+</dl>
+
+</div>
+
+
+
+<h5>Returns</h5>
+
+<p>A <code>R6Class</code> with members defined by the <code>R6MemberList</code>
+</p>
+
+
+<hr>
+<a id="method-R6MemberList-public_list"></a>
+
+
+
+<h4>Method <code>public_list()</code></h4>
+
+<p>Create named <code>list</code> that represent the public fields provided by the stored <code>R6Members</code>. <br> To be used as argument '<code>public</code>' in <code>R6Class()</code> definition. <br><em>See also the documentation of argument '<code>public</code>' in <code>?R6Class</code> .</em>
+</p>
+
+
+<h5>Usage</h5>
+
+<div class="r"><pre>R6MemberList$public_list(print_method = "default")</pre></div>
+
+
+
+<h5>Arguments</h5>
+
+<div class="arguments">
+
+<dl>
+<dt><code>print_method</code></dt><dd>
+<!-- ```{r,child = "../examples/class-R6MemberList-initialize.Rmd",eval=TRUE,echo=TRUE}
+``` -->
+
+<a id="print_method"></a><p>The print method to use for the
+<code>R6Classes</code>
+to be defined.
+May be one of the following:</p>
+
+<table>
+<tr>
+ <td style="text-align: left;">
+    </td><td style="text-align: left;">  </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   <code>"none"</code> or <code>NULL</code> </td><td style="text-align: left;"> No own print method is specified. The parent class' print method is inherited. </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   <code>"default"</code>              </td><td style="text-align: left;"> A default print method is used.  </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   <code>function</code> </td><td style="text-align: left;"> The provided function will be used as print method. 
+</td>
+</tr>
+
+</table>
+
+
+<table>
+<tr>
+ <td style="text-align: left;">
+    </td><td style="text-align: left;">  </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Type:   </td><td style="text-align: left;"> <code>character</code>,  <code>function</code> or  <code>NULL</code> (See above.) </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Default:  </td><td style="text-align: left;"> <code>"default"</code>        
+</td>
+</tr>
+
+</table>
+
+
+<br>
+
+<p><strong>The <code>"default"</code> print method</strong>
+<br>
+takes the same arguments as<code>R6Member$print()</code>, namely <code>value_level</code>,  <code>restriction_level</code> and <code>print_class</code> .
+<br>
+It generates output like in the following example:
+<br></p>
+<pre>
+
+Object of class(es)
+   `"ExampleR6Class"`
+Members:
+R6Member example_member_any
+   Value:
+      `1:5` 
+R6Member example_member_char_len2
+   Value:
+      `c("foo", "bar")` 
+
+</pre></dd>
+</dl>
+
+</div>
+
+
+
+<h5>Returns</h5>
+
+<p>A named <code>list</code> that represent the public fields provided by the stored <code>R6Members</code>. <br> To be used as argument '<code>public</code>' in <code>R6Class()</code> definition.
+</p>
+
+
+<hr>
+<a id="method-R6MemberList-private_list"></a>
+
+
+
+<h4>Method <code>private_list()</code></h4>
+
+<p>Create named <code>list</code> that represent the private fields provided by the stored <code>R6Members</code>. <br> To be used as argument '<code>private</code>' in <code>R6Class()</code> definition. <br><em>See also the documentation of argument '<code>private</code>' in <code>?R6Class</code> .</em>
+</p>
+
+
+<h5>Usage</h5>
+
+<div class="r"><pre>R6MemberList$private_list()</pre></div>
+
+
+
+<h5>Returns</h5>
+
+<p>A named <code>list</code> that represent the private fields provided by the stored <code>R6Members</code>. <br> To be used as argument '<code>private</code>' in <code>R6Class()</code> definition.
+</p>
+
+
+<hr>
+<a id="method-R6MemberList-print"></a>
+
+
+
+<h4>Method <code>print()</code></h4>
+
+<p>Print method for <code>R6MemberList</code>
+</p>
+
+
+<h5>Usage</h5>
+
+<div class="r"><pre>R6MemberList$print()</pre></div>
+
+
+<hr>
+<a id="method-R6MemberList-names"></a>
+
+
+
+<h4>Method <code>names()</code></h4>
+
+<p><code>names</code> method for <code>R6MemberList</code>
+</p>
+
+
+<h5>Usage</h5>
+
+<div class="r"><pre>R6MemberList$names(type = "public", subset = "all")</pre></div>
+
+
+
+<h5>Arguments</h5>
+
+<div class="arguments">
+
+<dl>
+<dt><code>type</code></dt><dd><a id="type"></a><p>The type of names to be returned.
+One of <code>c("public", "private")</code>.</p>
+
+<table>
+<tr>
+ <td style="text-align: left;">
+    </td><td style="text-align: left;">  </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Type:   </td><td style="text-align: left;"> character          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Default:  </td><td style="text-align: left;"> <code>"public"</code>         
+</td>
+</tr>
+
+</table>
+
+
+ <br>
+</dd>
+<dt><code>subset</code></dt><dd><a id="subset"></a><p>The subset of
+<code>R6Member</code>
+names from the
+<code>R6MemberList</code>
+to be returned.
+One of <code>c("all", "public", "private")</code>.</p>
+
+<table>
+<tr>
+ <td style="text-align: left;">
+    </td><td style="text-align: left;">  </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Type:   </td><td style="text-align: left;"> character          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Default:  </td><td style="text-align: left;"> <code>"all"</code>         
+</td>
+</tr>
+
+</table>
+
+
+ <br>
+</dd>
+</dl>
+
+</div>
+
+
+
+<h5>Returns</h5>
+
+<p>Character vector of names
+</p>
+
+
+<hr>
+<a id="method-R6MemberList-select"></a>
+
+
+
+<h4>Method <code>select()</code></h4>
+
+<p>Subsetting method for <code>R6MemberList</code>
+</p>
+
+
+<h5>Usage</h5>
+
+<div class="r"><pre>R6MemberList$select(member, new_value, inner = TRUE)</pre></div>
+
+
+
+<h5>Arguments</h5>
+
+<div class="arguments">
+
+<dl>
+<dt><code>member</code></dt><dd><a id="member"></a><p>Names of the
+<code>R6Member</code>
+objects in the
+<code>R6MemberList</code>
+to return.</p>
+
+<table>
+<tr>
+ <td style="text-align: left;">
+    </td><td style="text-align: left;">  </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Type:   </td><td style="text-align: left;"> character          
+</td>
+</tr>
+
+</table>
+
+
+ <br>
+</dd>
+<dt><code>new_value</code></dt><dd><a id="new_value"></a><p>Either missing (for the getter),
+or the new value(s) to be assigned to the
+<code>R6Member</code>
+objects in the
+<code>R6MemberList</code>
+(setter case).</p>
+
+<table>
+<tr>
+ <td style="text-align: left;">
+    </td><td style="text-align: left;">  </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Type:   </td><td style="text-align: left;"> any           
+</td>
+</tr>
+
+</table>
+
+
+ <br>
+</dd>
+<dt><code>inner</code></dt><dd><a id="inner"></a><p>If <code>TRUE</code>, the subset is a <em>single</em>
+<code>R6Member</code>
+object from the
+<code>R6MemberList</code>, in analogy to <code>list[[elem]]</code>.<br>
+If <code>FALSE</code>, the subset itself is a
+<code>R6MemberList</code>
+containing
+<code>R6Member objects</code>, in analogy to <code>list[elems]</code>.</p>
+
+<table>
+<tr>
+ <td style="text-align: left;">
+    </td><td style="text-align: left;">  </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Type:   </td><td style="text-align: left;"> logical          </td>
+</tr>
+<tr>
+ <td style="text-align: left;">
+   Default:  </td><td style="text-align: left;"> <code>TRUE</code>         
+</td>
+</tr>
+
+</table>
+
+
+ <br>
+</dd>
+</dl>
+
+</div>
+
+
+
+<h5>Returns</h5>
+
+<p>select
+</p>
+
+
+<hr>
+<a id="method-R6MemberList-clone"></a>
+
+
+
+<h4>Method <code>clone()</code></h4>
+
+<p>The objects of this class are cloneable with this method.
+</p>
+
+
+<h5>Usage</h5>
+
+<div class="r"><pre>R6MemberList$clone(deep = FALSE)</pre></div>
+
+
+
+<h5>Arguments</h5>
+
+<div class="arguments">
+
+<dl>
+<dt><code>deep</code></dt><dd><p>Whether to make a deep clone.</p>
+</dd>
+</dl>
+
+</div>
+
+
+
+</main>
+
+</div>
+</body></html>

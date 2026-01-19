@@ -1,0 +1,30 @@
+ 
+ 
+ ```{r,eval=TRUE,echo=FALSE,results="asis"}
+.doc_arg(
+    type = "logical",
+    description = c(
+        "Whether the ",
+        .doc_ref_self(),
+        "should be treated as a method (function) member.",
+        "<br>",
+        "Typically determined automatically by checking if",
+        .doc_ref(tag = "value"),
+        "is a ",
+        .doc_type_function(),
+        ", but can be assigned as well.",
+        "When `TRUE`, the member will be declared as a method in the",
+        .doc_r6class(),
+        "definition.",
+        .doc_fmt_highlight(
+            c(
+                "This field automatically resets every time ",
+                .doc_ref(tag = "value"),
+                " is set or changed, based on whether the new value is a function."
+            )
+        )
+    ),
+    affected_methods = "^declare_"
+)
+ ```
+

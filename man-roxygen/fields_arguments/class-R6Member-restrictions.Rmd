@@ -1,0 +1,27 @@
+ ```{r,eval=TRUE,echo=FALSE,results="asis"}
+.doc_arg(
+    type = "list",
+    description = c(
+        "A",
+        .doc_type_list(),
+        "of validity restrictions",
+        paste0(
+            "(",
+            .doc_r6memberrestriction(suffix = "s"),
+            ")"
+        ),
+        "the",
+        .doc_ref_self(suffix = "'s"),
+        .doc_ref(tag = "value"),
+        "must fulfill to be accepted.",
+        "When the value is set or modified, it is checked against all restrictions in sequence.",
+        "If any restriction fails, an error is raised and the value is not changed.",
+        "An empty list means no restrictions are applied.",
+        "See",
+        .doc_ref_section("details"),
+        "and",
+        .doc_ref_section("examples"),
+        "for more information on validation."
+    )
+)
+ ```

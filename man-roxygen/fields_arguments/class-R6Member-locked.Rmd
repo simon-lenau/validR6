@@ -1,0 +1,24 @@
+
+
+
+```{r,eval=TRUE,echo=FALSE,results="asis"}
+.doc_arg(
+
+    type = "logical",
+    description = c(
+        "Determines whether the",
+        .doc_ref_self(),
+        "object's",
+        "fields", 
+        "are locked (`TRUE`, the default) or writable (`FALSE`).",
+        "When locked, most fields cannot be modified after initialization.",
+        "This applies to all fields except itself, but can be overwritten for the",
+        .doc_ref(tag = "value"),
+        "by setting",
+        .doc_ref(tag = "value_locked"),
+        "Locking provides immutability guarantees and prevents accidental modifications to the member definition."
+    ),
+    affected_methods = "^declare_"
+)
+```
+
