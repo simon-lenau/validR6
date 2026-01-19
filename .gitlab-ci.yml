@@ -11,6 +11,7 @@ push_to_github:
     - git config user.email "${GITHUB_EMAIL}"
     - git config user.name "CI Bot"
     - git fetch origin main
+    - git checkout main
     - git remote add github https://${GITHUB_TOKEN}@github.com/${GITHUB_USER}/${GITHUB_REPO}.git
     - git push github origin/main:main
   only:
