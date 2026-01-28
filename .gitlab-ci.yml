@@ -13,6 +13,4 @@ push_to_github:
     - git fetch origin main
     - git checkout main
     - git remote add github https://${GITHUB_TOKEN}@github.com/${GITHUB_USER}/${GITHUB_REPO}.git
-    - git push github main
-  only:
-    - main
+    - git push github origin/main:main
