@@ -205,12 +205,14 @@ R6MemberList <-
                 method_initialize <-
                     function() {}
 
-                # Match the constructor's arguments match the list elements' name
+                # Make the constructor's arguments match the list elements' name
                 formals(method_initialize) <-
                     setNames(
                         private$.member_apply(
                             fun = function(x) {
-                                parse(text = .capture(x$value))[[1]]
+                                parse(
+                                    text = .capture(x$value, collapse = "\n")
+                                )[[1]]
                             },
                             subset = "public"
                         ),
