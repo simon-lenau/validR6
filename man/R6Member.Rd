@@ -2,11 +2,9 @@
 % Please edit documentation in R/class-R6Member.R
 \name{R6Member}
 \alias{R6Member}
-\title{\if{html}{\out{<a id="R6Member"></a>}}\if{latex}{\out{\hypertarget{R6Member}{}}}
-Container for members
+\title{Container for members
 in \ifelse{html}{\link[R6:R6Class]{\code{R6Class}}}{\ifelse{latex}{\code{R6Class}}{\link[R6:R6Class]{\code{R6Class}}}} definitions.}
 \description{
-\if{html}{\out{<a id="sec-description"></a>}}\if{latex}{\out{\hypertarget{sec-description}{}}}
 \ifelse{html}{\link[=R6MemberRestriction]{\code{R6MemberRestriction.check}}}{\ifelse{latex}{\href{#method-R6MemberRestriction-check}{\code{R6MemberRestriction.check}}}{\link[=R6MemberRestriction]{\code{R6MemberRestriction.check}}}}
 A container that stores name, value and (optional) validity restrictions of type \ifelse{html}{\link[=R6MemberRestriction]{\code{R6MemberRestriction}}}{\ifelse{latex}{\href{#R6MemberRestriction}{\code{R6MemberRestriction}}}{\link[=R6MemberRestriction]{\code{R6MemberRestriction}}}}
 for members to be used in \ifelse{html}{\link[R6:R6Class]{\code{R6Class}}}{\ifelse{latex}{\code{R6Class}}{\link[R6:R6Class]{\code{R6Class}}}} declarations.
@@ -24,7 +22,7 @@ See the sections on
 and
 \ifelse{html}{\href{#method-R6Member-accessor}{methods}}{\ifelse{latex}{\href{#method-R6Member-accessor}{methods}}{\link[=R6Member]{methods}}}.
 }
-\section{\if{html}{\out{<a id="sec-R6Member-details">Details</a>}}\if{latex}{\out{\hypertarget{sec-R6Member-details}{Details}}}}{
+\section{Details}{
 
 \code{R6Member} objects
 provide a formalized interface for setting up members of
@@ -32,7 +30,7 @@ provide a formalized interface for setting up members of
 and provide methods for automatically generating the corresponding
 \ifelse{html}{\link[R6:R6Class]{\code{R6Class()}}}{\ifelse{latex}{\code{R6Class()}}{\link[R6:R6Class]{\code{R6Class()}}}} arguments
 \ifelse{html}{\link[R6:R6Class]{\code{public}}}{\ifelse{latex}{\code{public}}{\link[R6:R6Class]{\code{public}}}}, \ifelse{html}{\link[R6:R6Class]{\code{private}}}{\ifelse{latex}{\code{private}}{\link[R6:R6Class]{\code{private}}}} and \ifelse{html}{\link[R6:R6Class]{\code{active}}}{\ifelse{latex}{\code{active}}{\link[R6:R6Class]{\code{active}}}}.
-\subsection{Validation rules for \ifelse{html}{\href{#active-R6Member-value}{\code{$value}}}{\ifelse{latex}{\href{#active-R6Member-value}{\code{$value}}}{\link[=R6Member]{\code{$value}}}} \if{html}{\out{<a id="sec-details-restricted"></a>}}\if{latex}{\out{\hypertarget{sec-details-restricted}{}}}}{
+\subsection{Validation rules for \ifelse{html}{\href{#active-R6Member-value}{\code{$value}}}{\ifelse{latex}{\href{#active-R6Member-value}{\code{$value}}}{\link[=R6Member]{\code{$value}}}}}{
 
 Validation rules for the
 \ifelse{html}{\href{#active-R6Member-value}{\code{$value}}}{\ifelse{latex}{\href{#active-R6Member-value}{\code{$value}}}{\link[=R6Member]{\code{$value}}}}
@@ -49,14 +47,14 @@ before \ifelse{html}{\href{#active-R6Member-value}{\code{R6Member$value}}}{\ifel
 This ensures all validation criteria are met.
 }
 
-\subsection{Combining multiple \code{R6Members} and declaring \ifelse{html}{\link[R6:R6Class]{\code{R6Classes}}}{\ifelse{latex}{\code{R6Classes}}{\link[R6:R6Class]{\code{R6Classes}}}} \if{html}{\out{<a id="sec-details-multiple"></a>}}\if{latex}{\out{\hypertarget{sec-details-multiple}{}}}}{
+\subsection{Combining multiple \code{R6Members} and declaring \ifelse{html}{\link[R6:R6Class]{\code{R6Classes}}}{\ifelse{latex}{\code{R6Classes}}{\link[R6:R6Class]{\code{R6Classes}}}}}{
 
 For declaring \ifelse{html}{\link[R6:R6Class]{\code{R6Classes}}}{\ifelse{latex}{\code{R6Classes}}{\link[R6:R6Class]{\code{R6Classes}}}},
 \code{R6Members} are most conveniently combined in a \ifelse{html}{\link[=R6MemberList]{\code{R6MemberList}}}{\ifelse{latex}{\href{#R6MemberList}{\code{R6MemberList}}}{\link[=R6MemberList]{\code{R6MemberList}}}}.
 }
 }
 
-\section{\if{html}{\out{<a id="sec-R6Member-examples">Examples</a>}}\if{latex}{\out{\hypertarget{sec-R6Member-examples}{Examples}}}}{
+\section{Examples}{
 
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{# ===================== > Create R6MemberRestrictions < ====================== #
@@ -137,7 +135,7 @@ Invalid attempt to set
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
-\item{\code{is_method}}{\if{html}{\out{<a id="active-R6Member-is_method"></a>}}\if{latex}{\out{\hypertarget{active-R6Member-is_method}{}}}Whether the
+\item{\code{is_method}}{Whether the
 \code{R6Member}
 should be treated as a method (function) member.
 \if{html}{\out{<br>}}
@@ -160,7 +158,7 @@ definition.
  <br>
 }}}
 
-\item{\code{is_private}}{\if{html}{\out{<a id="active-R6Member-is_private"></a>}}\if{latex}{\out{\hypertarget{active-R6Member-is_private}{}}}Determines whether the
+\item{\code{is_private}}{Determines whether the
 \code{R6Member}
 becomes a private member of the
 \ifelse{html}{\link[R6:R6Class]{\code{R6Classes}}}{\ifelse{latex}{\code{R6Classes}}{\link[R6:R6Class]{\code{R6Classes}}}}.
@@ -185,7 +183,7 @@ will return
  <br>
 }}}
 
-\item{\code{locked}}{\if{html}{\out{<a id="active-R6Member-locked"></a>}}\if{latex}{\out{\hypertarget{active-R6Member-locked}{}}}Determines whether the
+\item{\code{locked}}{Determines whether the
 \code{R6Member}
 object's
 fields
@@ -207,7 +205,7 @@ Locking provides immutability guarantees and prevents accidental modifications t
 <br>
 }}}
 
-\item{\code{name}}{\if{html}{\out{<a id="active-R6Member-name"></a>}}\if{latex}{\out{\hypertarget{active-R6Member-name}{}}}Name of the
+\item{\code{name}}{Name of the
 \code{R6Member}
 object.
 This name serves as the identifier for the member in the
@@ -225,7 +223,7 @@ The name is used to generate member declarations in public, private, and active 
 <br>
 }}}
 
-\item{\code{private_name}}{\if{html}{\out{<a id="active-R6Member-private_name"></a>}}\if{latex}{\out{\hypertarget{active-R6Member-private_name}{}}}The private internal name of the
+\item{\code{private_name}}{The private internal name of the
 \code{R6Member}
 object.
 This is the name used to store the member in the private environment of the
@@ -239,7 +237,7 @@ It is constructed from the public name with a prefix (default: \code{.}) and opt
 <br>
 }}}
 
-\item{\code{restrictions}}{\if{html}{\out{<a id="active-R6Member-restrictions"></a>}}\if{latex}{\out{\hypertarget{active-R6Member-restrictions}{}}}A
+\item{\code{restrictions}}{A
 \ifelse{html}{\link[base:list]{\code{list}}}{\ifelse{latex}{\code{list}}{\link[base:list]{\code{list}}}}
 of validity restrictions
 (\ifelse{html}{\link[=R6MemberRestriction]{\code{R6MemberRestrictions}}}{\ifelse{latex}{\href{#R6MemberRestriction}{\code{R6MemberRestrictions}}}{\link[=R6MemberRestriction]{\code{R6MemberRestrictions}}}})
@@ -263,7 +261,7 @@ for more information on validation.\tabular{ll}{
  <br>
 }}}
 
-\item{\code{value}}{\if{html}{\out{<a id="active-R6Member-value"></a>}}\if{latex}{\out{\hypertarget{active-R6Member-value}{}}}Value of the
+\item{\code{value}}{Value of the
 \code{R6Member}
 object.
 Can be any R object (vector, list, function, etc.).
@@ -286,7 +284,7 @@ before the assignment is accepted.\tabular{ll}{
  <br>
 }}}
 
-\item{\code{value_locked}}{\if{html}{\out{<a id="active-R6Member-value_locked"></a>}}\if{latex}{\out{\hypertarget{active-R6Member-value_locked}{}}}Determines whether the
+\item{\code{value_locked}}{Determines whether the
 \ifelse{html}{\href{#active-R6Member-value}{\code{value}}}{\ifelse{latex}{\href{#active-R6Member-value}{\code{value}}}{\link[=R6Member]{\code{value}}}}
 is locked (\code{TRUE}) or writable (\code{FALSE}).\tabular{ll}{
     \tab  \cr
@@ -325,7 +323,7 @@ is locked (\code{TRUE}) or writable (\code{FALSE}).\tabular{ll}{
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{field_value}}{\if{html}{\out{<a id="field_value"></a>}}\if{latex}{\out{\hypertarget{field_value}{}}}Optional new value for field \verb{<field_name>}.
+\item{\code{field_value}}{Optional new value for field \verb{<field_name>}.
 If omitted the method returns the current field contents.
 If provided the \code{field_value} is validated and assigned to the field.\tabular{ll}{
     \tab  \cr
@@ -335,7 +333,7 @@ If provided the \code{field_value} is validated and assigned to the field.\tabul
  <br>
 }}}
 
-\item{\code{field_name}}{\if{html}{\out{<a id="field_name"></a>}}\if{latex}{\out{\hypertarget{field_name}{}}}The name of the internal field to be accessed.
+\item{\code{field_name}}{The name of the internal field to be accessed.
 \if{html}{\out{<br>}}
 See
 \ifelse{html}{\href{#active-R6Member-is_method}{active bindings}}{\ifelse{latex}{\href{#active-R6Member-is_method}{active bindings}}{\link[=R6Member]{active bindings}}}
@@ -382,7 +380,7 @@ Access or modify one of the internal fields of \code{R6Member}s
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{name}}{\if{html}{\out{<a id="active-R6Member-name"></a>}}\if{latex}{\out{\hypertarget{active-R6Member-name}{}}}Name of the
+\item{\code{name}}{Name of the
 \code{R6Member}
 object.
 This name serves as the identifier for the member in the
@@ -400,7 +398,7 @@ The name is used to generate member declarations in public, private, and active 
 <br>
 }}}
 
-\item{\code{value}}{\if{html}{\out{<a id="active-R6Member-value"></a>}}\if{latex}{\out{\hypertarget{active-R6Member-value}{}}}Value of the
+\item{\code{value}}{Value of the
 \code{R6Member}
 object.
 Can be any R object (vector, list, function, etc.).
@@ -423,7 +421,7 @@ before the assignment is accepted.\tabular{ll}{
  <br>
 }}}
 
-\item{\code{restrictions}}{\if{html}{\out{<a id="active-R6Member-restrictions"></a>}}\if{latex}{\out{\hypertarget{active-R6Member-restrictions}{}}}A
+\item{\code{restrictions}}{A
 \ifelse{html}{\link[base:list]{\code{list}}}{\ifelse{latex}{\code{list}}{\link[base:list]{\code{list}}}}
 of validity restrictions
 (\ifelse{html}{\link[=R6MemberRestriction]{\code{R6MemberRestrictions}}}{\ifelse{latex}{\href{#R6MemberRestriction}{\code{R6MemberRestrictions}}}{\link[=R6MemberRestriction]{\code{R6MemberRestrictions}}}})
@@ -447,7 +445,7 @@ for more information on validation.\tabular{ll}{
  <br>
 }}}
 
-\item{\code{locked}}{\if{html}{\out{<a id="active-R6Member-locked"></a>}}\if{latex}{\out{\hypertarget{active-R6Member-locked}{}}}Determines whether the
+\item{\code{locked}}{Determines whether the
 \code{R6Member}
 object's
 fields
@@ -469,7 +467,7 @@ Locking provides immutability guarantees and prevents accidental modifications t
 <br>
 }}}
 
-\item{\code{value_locked}}{\if{html}{\out{<a id="active-R6Member-value_locked"></a>}}\if{latex}{\out{\hypertarget{active-R6Member-value_locked}{}}}Determines whether the
+\item{\code{value_locked}}{Determines whether the
 \ifelse{html}{\href{#active-R6Member-value}{\code{value}}}{\ifelse{latex}{\href{#active-R6Member-value}{\code{value}}}{\link[=R6Member]{\code{value}}}}
 is locked (\code{TRUE}) or writable (\code{FALSE}).\tabular{ll}{
     \tab  \cr
@@ -483,7 +481,7 @@ is locked (\code{TRUE}) or writable (\code{FALSE}).\tabular{ll}{
  <br>
 }}}
 
-\item{\code{is_private}}{\if{html}{\out{<a id="active-R6Member-is_private"></a>}}\if{latex}{\out{\hypertarget{active-R6Member-is_private}{}}}Determines whether the
+\item{\code{is_private}}{Determines whether the
 \code{R6Member}
 becomes a private member of the
 \ifelse{html}{\link[R6:R6Class]{\code{R6Classes}}}{\ifelse{latex}{\code{R6Classes}}{\link[R6:R6Class]{\code{R6Classes}}}}.
@@ -508,7 +506,7 @@ will return
  <br>
 }}}
 
-\item{\code{is_method}}{\if{html}{\out{<a id="active-R6Member-is_method"></a>}}\if{latex}{\out{\hypertarget{active-R6Member-is_method}{}}}Whether the
+\item{\code{is_method}}{Whether the
 \code{R6Member}
 should be treated as a method (function) member.
 \if{html}{\out{<br>}}
@@ -554,7 +552,7 @@ and locks the object after initialization.
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{value_level}}{\if{html}{\out{<a id="value_level"></a>}}\if{latex}{\out{\hypertarget{value_level}{}}}The amount of information about the
+\item{\code{value_level}}{The amount of information about the
 \ifelse{html}{\href{#active-R6Member-value}{\code{value}}}{\ifelse{latex}{\href{#active-R6Member-value}{\code{value}}}{\link[=R6Member]{\code{value}}}}
 to be printed.
 One of:\tabular{rcl}{
@@ -574,7 +572,7 @@ When set to a positive number, this controls the maximum width for displaying th
 If `TRUE`, displays the full value. If `FALSE` or `0`, the value is not displayed.
 }}}
 
-\item{\code{restriction_level}}{\if{html}{\out{<a id="restriction_level"></a>}}\if{latex}{\out{\hypertarget{restriction_level}{}}}The amount of information about
+\item{\code{restriction_level}}{The amount of information about
 each of
 the
 \ifelse{html}{\href{#active-R6Member-restrictions}{\code{restrictions}}}{\ifelse{latex}{\href{#active-R6Member-restrictions}{\code{restrictions}}}{\link[=R6Member]{\code{restrictions}}}}
@@ -597,7 +595,7 @@ Higher values show more detailed restriction information.
 `0` means restrictions are not printed.
 }}}
 
-\item{\code{print_class}}{\if{html}{\out{<a id="print_class"></a>}}\if{latex}{\out{\hypertarget{print_class}{}}}Whether the class name (\code{R6Member}) should be included when printing.\tabular{ll}{
+\item{\code{print_class}}{Whether the class name (\code{R6Member}) should be included when printing.\tabular{ll}{
     \tab  \cr
    Type:   \tab logical          \cr
    Default:  \tab \code{TRUE}         \cr

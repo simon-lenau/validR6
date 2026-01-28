@@ -1122,24 +1122,25 @@ R6Member <-
                 }
                 method <-
                     function() {}
-
-                formals(method) <-
-                    formals(private$.value)
-                body(method) <-
-                    parse(
-                        text = paste0(
-                            private$.pos_in_parent("private"),
-                            "$value(\n",
-                            paste0(
-                                "\t",
-                                names(formals(method)),
-                                "=",
-                                names(formals(method)),
-                                collapse = ",\n"
-                            ),
-                            "\n)"
+                if (length(formals(private$.value)) > 0) {
+                    formals(method) <-
+                        formals(private$.value)
+                    body(method) <-
+                        parse(
+                            text = paste0(
+                                private$.pos_in_parent("private"),
+                                "$value(\n",
+                                paste0(
+                                    "\t",
+                                    names(formals(method)),
+                                    "=",
+                                    names(formals(method)),
+                                    collapse = ",\n"
+                                ),
+                                "\n)"
+                            )
                         )
-                    )
+                }
                 return(setNames(
                     list(method),
                     self$name
@@ -1177,9 +1178,8 @@ R6Member <-
                         } else {
                             paste0(private$.pos_in_parent("private"), "$value")
                         },
-                        " <- `",
-                        self$name,
-                        "`"
+                        " <- ",
+                        self$name
                     )
                 )
             }

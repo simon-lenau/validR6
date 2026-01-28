@@ -2,8 +2,7 @@
 % Please edit documentation in R/class-R6MemberList.R
 \name{R6MemberList}
 \alias{R6MemberList}
-\title{\if{html}{\out{<a id="R6MemberList"></a>}}\if{latex}{\out{\hypertarget{R6MemberList}{}}}
-\code{R6MemberList}:
+\title{\code{R6MemberList}:
 Wrapping toolbox for using
 \code{R6Members}
 in \ifelse{html}{\link[R6:R6Class]{\code{R6Class}}}{\ifelse{latex}{\code{R6Class}}{\link[R6:R6Class]{\code{R6Class}}}} definitions.}
@@ -20,7 +19,7 @@ a \ifelse{html}{\link[R6:R6Class]{\code{R6Class}}}{\ifelse{latex}{\code{R6Class}
 \if{html}{\out{<br>}}
 The core method for this purpose is \ifelse{html}{\href{#method-R6MemberList-R6Class}{\code{$R6Class()}}}{\ifelse{latex}{\href{#method-R6MemberList-R6Class}{\code{$R6Class()}}}{\link[=R6MemberList]{\code{$R6Class()}}}}.
 }
-\section{\if{html}{\out{<a id="sec-R6MemberList-details">Details</a>}}\if{latex}{\out{\hypertarget{sec-R6MemberList-details}{Details}}}}{
+\section{Details}{
 
 Once a \code{R6MemberList} is instanciated,
 the
@@ -37,14 +36,14 @@ which calls the worker methods
 These set up the \ifelse{html}{\link[base:list]{\code{lists}}}{\ifelse{latex}{\code{lists}}{\link[base:list]{\code{lists}}}} defining the arguments
 \ifelse{html}{\link[R6:R6Class]{\code{public}}}{\ifelse{latex}{\code{public}}{\link[R6:R6Class]{\code{public}}}},  \ifelse{html}{\link[R6:R6Class]{\code{private}}}{\ifelse{latex}{\code{private}}{\link[R6:R6Class]{\code{private}}}} and \ifelse{html}{\link[R6:R6Class]{\code{active}}}{\ifelse{latex}{\code{active}}{\link[R6:R6Class]{\code{active}}}}
 for the call to \ifelse{html}{\link[R6:R6Class]{\code{R6::R6Class()}}}{\ifelse{latex}{\code{R6::R6Class()}}{\link[R6:R6Class]{\code{R6::R6Class()}}}}.
-\subsection{\if{html}{\out{<a id="sec-R6MemberList-details-names">Retrieving private and public names</a>}}\if{latex}{\out{\hypertarget{sec-R6MemberList-details-names}{Retrieving private and public names}}}}{
+\subsection{Retrieving private and public names}{
 
 Use \ifelse{html}{\href{#method-R6MemberList-names}{\code{$names()}}}{\ifelse{latex}{\href{#method-R6MemberList-names}{\code{$names()}}}{\link[=R6MemberList]{\code{$names()}}}} to retrieve public or private member names
 of the \ifelse{html}{\link[=R6Member]{\code{R6Member}}}{\ifelse{latex}{\href{#R6Member}{\code{R6Member}}}{\link[=R6Member]{\code{R6Member}}}} objects in the \ifelse{html}{\link[R6:R6Class]{\code{R6Class}}}{\ifelse{latex}{\code{R6Class}}{\link[R6:R6Class]{\code{R6Class}}}}
 created by \ifelse{html}{\href{#method-R6MemberList-R6Class}{\code{$R6Class()}}}{\ifelse{latex}{\href{#method-R6MemberList-R6Class}{\code{$R6Class()}}}{\link[=R6MemberList]{\code{$R6Class()}}}}.
 }
 
-\subsection{\if{html}{\out{<a id="sec-R6MemberList-details-subsetting">Subsetting</a>}}\if{latex}{\out{\hypertarget{sec-R6MemberList-details-subsetting}{Subsetting}}}}{
+\subsection{Subsetting}{
 
 The
 \ifelse{html}{\href{#method-R6MemberList-select}{\code{$select()}}}{\ifelse{latex}{\href{#method-R6MemberList-select}{\code{$select()}}}{\link[=R6MemberList]{\code{$select()}}}} method
@@ -60,7 +59,7 @@ section for more details and examples.
 }
 }
 
-\section{\if{html}{\out{<a id="sec-R6MemberList-examples">Examples</a>}}\if{latex}{\out{\hypertarget{sec-R6MemberList-examples}{Examples}}}}{
+\section{Examples}{
 
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{# ===================== > Create R6MemberRestrictions < ====================== #
@@ -152,7 +151,7 @@ from the supplied \ifelse{html}{\link[=R6Member]{\code{R6Member}}}{\ifelse{latex
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{...}}{\if{html}{\out{<a id="dots"></a>}}\if{latex}{\out{\hypertarget{dots}{}}}\ifelse{html}{\link[=R6Member]{\code{R6Member}}}{\ifelse{latex}{\href{#R6Member}{\code{R6Member}}}{\link[=R6Member]{\code{R6Member}}}}
+\item{\code{...}}{\ifelse{html}{\link[=R6Member]{\code{R6Member}}}{\ifelse{latex}{\href{#R6Member}{\code{R6Member}}}{\link[=R6Member]{\code{R6Member}}}}
 objects to be combined in the
 \code{R6MemberList}
 \if{html}{\out{<br>}}\emph{Objects of other types are not accepted.}\tabular{ll}{
@@ -195,7 +194,7 @@ Declare \ifelse{html}{\link[R6:R6Class]{\code{R6Class}}}{\ifelse{latex}{\code{R6
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{classname}}{\if{html}{\out{<a id="classname"></a>}}\if{latex}{\out{\hypertarget{classname}{}}}Name of the
+\item{\code{classname}}{Name of the
 \ifelse{html}{\link[R6:R6Class]{\code{R6Class}}}{\ifelse{latex}{\code{R6Class}}{\link[R6:R6Class]{\code{R6Class}}}}
 to be defined.
 See also the documentation of argument
@@ -215,7 +214,7 @@ in
 }}
 
 
-\if{html}{\out{<a id="print_method"></a>}}\if{latex}{\out{\hypertarget{print_method}{}}}The print method to use for the
+The print method to use for the
 \ifelse{html}{\link[R6:R6Class]{\code{R6Classes}}}{\ifelse{latex}{\code{R6Classes}}{\link[R6:R6Class]{\code{R6Classes}}}}
 to be defined.
 May be one of the following:\tabular{ll}{
@@ -277,7 +276,7 @@ Create named \ifelse{html}{\link[base:list]{\code{list}}}{\ifelse{latex}{\code{l
 }}
 
 
-\if{html}{\out{<a id="print_method"></a>}}\if{latex}{\out{\hypertarget{print_method}{}}}The print method to use for the
+The print method to use for the
 \ifelse{html}{\link[R6:R6Class]{\code{R6Classes}}}{\ifelse{latex}{\code{R6Classes}}{\link[R6:R6Class]{\code{R6Classes}}}}
 to be defined.
 May be one of the following:\tabular{ll}{
@@ -356,7 +355,7 @@ Print method for \code{R6MemberList}
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{type}}{\if{html}{\out{<a id="type"></a>}}\if{latex}{\out{\hypertarget{type}{}}}The type of names to be returned.
+\item{\code{type}}{The type of names to be returned.
 One of \code{c("public", "private")}.\tabular{ll}{
     \tab  \cr
    Type:   \tab character          \cr
@@ -366,7 +365,7 @@ One of \code{c("public", "private")}.\tabular{ll}{
  <br>
 }}}
 
-\item{\code{subset}}{\if{html}{\out{<a id="subset"></a>}}\if{latex}{\out{\hypertarget{subset}{}}}The subset of
+\item{\code{subset}}{The subset of
 \ifelse{html}{\link[=R6Member]{\code{R6Member}}}{\ifelse{latex}{\href{#R6Member}{\code{R6Member}}}{\link[=R6Member]{\code{R6Member}}}}
 names from the
 \code{R6MemberList}
@@ -398,7 +397,7 @@ Subsetting method for \code{R6MemberList}
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{member}}{\if{html}{\out{<a id="member"></a>}}\if{latex}{\out{\hypertarget{member}{}}}Names of the
+\item{\code{member}}{Names of the
 \ifelse{html}{\link[=R6Member]{\code{R6Member}}}{\ifelse{latex}{\href{#R6Member}{\code{R6Member}}}{\link[=R6Member]{\code{R6Member}}}}
 objects in the
 \code{R6MemberList}
@@ -410,7 +409,7 @@ to return.\tabular{ll}{
  <br>
 }}}
 
-\item{\code{new_value}}{\if{html}{\out{<a id="new_value"></a>}}\if{latex}{\out{\hypertarget{new_value}{}}}Either missing (for the getter),
+\item{\code{new_value}}{Either missing (for the getter),
 or the new value(s) to be assigned to the
 \ifelse{html}{\link[=R6Member]{\code{R6Member}}}{\ifelse{latex}{\href{#R6Member}{\code{R6Member}}}{\link[=R6Member]{\code{R6Member}}}}
 objects in the
@@ -423,7 +422,7 @@ objects in the
  <br>
 }}}
 
-\item{\code{inner}}{\if{html}{\out{<a id="inner"></a>}}\if{latex}{\out{\hypertarget{inner}{}}}If \code{TRUE}, the subset is a \emph{single}
+\item{\code{inner}}{If \code{TRUE}, the subset is a \emph{single}
 \ifelse{html}{\link[=R6Member]{\code{R6Member}}}{\ifelse{latex}{\href{#R6Member}{\code{R6Member}}}{\link[=R6Member]{\code{R6Member}}}}
 object from the
 \code{R6MemberList}, in analogy to \code{list[[elem]]}.\if{html}{\out{<br>}}

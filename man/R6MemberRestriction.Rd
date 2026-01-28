@@ -2,11 +2,9 @@
 % Please edit documentation in R/class-R6MemberRestriction.R
 \name{R6MemberRestriction}
 \alias{R6MemberRestriction}
-\title{\if{html}{\out{<a id="R6MemberRestriction"></a>}}\if{latex}{\out{\hypertarget{R6MemberRestriction}{}}}
-R6MemberRestriction:
+\title{R6MemberRestriction:
 Validity constraints for \ifelse{html}{\link[=R6Member]{\code{R6Member}}}{\ifelse{latex}{\code{R6Member}}{\link[=R6Member]{\code{R6Member}}}} objects}
 \description{
-\if{html}{\out{<a id="sec-description"></a>}}\if{latex}{\out{\hypertarget{sec-description}{}}}
 A \code{R6MemberRestriction} encapsulates and manages a single validation rule -- a \ifelse{html}{\href{#active-R6MemberRestriction-restriction}{\code{restriction}}}{\ifelse{latex}{\href{#active-R6MemberRestriction-restriction}{\code{restriction}}}{\link[=R6MemberRestriction]{\code{restriction}}}} -- as a reusable object.
 This validation rule is a user-supplied \ifelse{html}{\link[base:function]{\code{function}}}{\ifelse{latex}{\code{function}}{\link[base:function]{\code{function}}}} to check whether \code{value}s meet a constraint.
 
@@ -19,7 +17,7 @@ but can be applied to any \code{value} for which a validation rule needs to be e
 
 Each \code{R6MemberRestriction} has a unique \ifelse{html}{\href{#active-R6MemberRestriction-id}{\code{id}}}{\ifelse{latex}{\href{#active-R6MemberRestriction-id}{\code{id}}}{\link[=R6MemberRestriction]{\code{id}}}} for error reporting and a \ifelse{html}{\href{#active-R6MemberRestriction-restriction}{\code{restriction}}}{\ifelse{latex}{\href{#active-R6MemberRestriction-restriction}{\code{restriction}}}{\link[=R6MemberRestriction]{\code{restriction}}}} function that implements the actual validation logic.
 }
-\section{\if{html}{\out{<a id="sec-R6MemberRestriction-details">Details</a>}}\if{latex}{\out{\hypertarget{sec-R6MemberRestriction-details}{Details}}}}{
+\section{Details}{
 
 
 A \code{R6MemberRestriction} is characterized
@@ -39,7 +37,7 @@ This separation promotes modularity and consistency across validation workflows.
 }
 }
 
-\subsection{\if{html}{\out{<a id="sec-details-restrictions-examples"></a>}}\if{latex}{\out{\hypertarget{sec-details-restrictions-examples}{}}} Typical Examples for \ifelse{html}{\href{#active-R6MemberRestriction-restriction}{\code{Restrictions}}}{\ifelse{latex}{\href{#active-R6MemberRestriction-restriction}{\code{Restrictions}}}{\link[=R6MemberRestriction]{\code{Restrictions}}}}}{
+\subsection{Typical Examples for \ifelse{html}{\href{#active-R6MemberRestriction-restriction}{\code{Restrictions}}}{\ifelse{latex}{\href{#active-R6MemberRestriction-restriction}{\code{Restrictions}}}{\link[=R6MemberRestriction]{\code{Restrictions}}}}}{
 \itemize{
 \item \code{value} must be of a certain type (such as \ifelse{html}{\link[base:numeric]{\code{numeric}}}{\ifelse{latex}{\code{numeric}}{\link[base:numeric]{\code{numeric}}}},  \ifelse{html}{\link[base:list]{\code{list}}}{\ifelse{latex}{\code{list}}{\link[base:list]{\code{list}}}} or  \ifelse{html}{\link[base:function]{\code{function}}}{\ifelse{latex}{\code{function}}{\link[base:function]{\code{function}}}})
 \item \code{value}'s elements \emph{together} must meet a \emph{common} restriction, e.g. in terms of dimensionality (\code{\link[base:length]{length}(value) == k}) or totals (\code{\link[base:sum]{sum}(value) > t})
@@ -47,7 +45,7 @@ This separation promotes modularity and consistency across validation workflows.
 }
 }
 
-\subsection{\if{html}{\out{<a id="sec-details-restrictions-structure"></a>}}\if{latex}{\out{\hypertarget{sec-details-restrictions-structure}{}}} Structure of \ifelse{html}{\href{#active-R6MemberRestriction-restriction}{\code{Restrictions}}}{\ifelse{latex}{\href{#active-R6MemberRestriction-restriction}{\code{Restrictions}}}{\link[=R6MemberRestriction]{\code{Restrictions}}}}}{
+\subsection{Structure of \ifelse{html}{\href{#active-R6MemberRestriction-restriction}{\code{Restrictions}}}{\ifelse{latex}{\href{#active-R6MemberRestriction-restriction}{\code{Restrictions}}}{\link[=R6MemberRestriction]{\code{Restrictions}}}}}{
 
 The \ifelse{html}{\href{#active-R6MemberRestriction-restriction}{\code{restriction}}}{\ifelse{latex}{\href{#active-R6MemberRestriction-restriction}{\code{restriction}}}{\link[=R6MemberRestriction]{\code{restriction}}}} must be a \ifelse{html}{\link[base:function]{\code{function}}}{\ifelse{latex}{\code{function}}{\link[base:function]{\code{function}}}} taking a single argument and returning a single
 \ifelse{html}{\link[base:logical]{\code{logical}}}{\ifelse{latex}{\code{logical}}{\link[base:logical]{\code{logical}}}} value to indicate
@@ -92,7 +90,7 @@ See the \ifelse{html}{\link[=R6Member]{R6Member examples}}{\ifelse{latex}{\href{
 }
 }
 
-\section{\if{html}{\out{<a id="sec-R6MemberRestriction-examples">Examples</a>}}\if{latex}{\out{\hypertarget{sec-R6MemberRestriction-examples}{Examples}}}}{
+\section{Examples}{
 
 
 \if{html}{\out{<div class="sourceCode r">}}\preformatted{# ===================== > Create R6MemberRestrictions < ====================== #
@@ -157,7 +155,7 @@ type_restriction$check(1:5)
 \section{Active bindings}{
 \if{html}{\out{<div class="r6-active-bindings">}}
 \describe{
-\item{\code{id}}{\if{html}{\out{<a id="active-R6MemberRestriction-id"></a>}}\if{latex}{\out{\hypertarget{active-R6MemberRestriction-id}{}}}Unique identifier of the
+\item{\code{id}}{Unique identifier of the
 \code{R6MemberRestriction}.
 By default, this is part of messages when using the
 \ifelse{html}{\href{#method-R6MemberRestriction-check}{\code{check}}}{\ifelse{latex}{\href{#method-R6MemberRestriction-check}{\code{check}}}{\link[=R6MemberRestriction]{\code{check}}}} method to evaluate the restriction.
@@ -174,7 +172,7 @@ Identifiers help distinguish between multiple restrictions and make debugging ea
 <br>
 }}}
 
-\item{\code{restriction}}{\if{html}{\out{<a id="active-R6MemberRestriction-restriction"></a>}}\if{latex}{\out{\hypertarget{active-R6MemberRestriction-restriction}{}}}A
+\item{\code{restriction}}{A
 \ifelse{html}{\link[base:function]{\code{function}}}{\ifelse{latex}{\code{function}}{\link[base:function]{\code{function}}}}
 representing the validation rule for a
 \code{value}.
@@ -223,7 +221,7 @@ Common patterns include type checking, length validation, range checking, and va
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{value}}{\if{html}{\out{<a id="value"></a>}}\if{latex}{\out{\hypertarget{value}{}}}The value for which to check if it meets the
+\item{\code{value}}{The value for which to check if it meets the
 \ifelse{html}{\href{#active-R6MemberRestriction-restriction}{\code{restriction}}}{\ifelse{latex}{\href{#active-R6MemberRestriction-restriction}{\code{restriction}}}{\link[=R6MemberRestriction]{\code{restriction}}}}.\tabular{ll}{
     \tab  \cr
    Type:   \tab any           \cr
@@ -232,7 +230,7 @@ Common patterns include type checking, length validation, range checking, and va
 <br>
 }}}
 
-\item{\code{include_id}}{\if{html}{\out{<a id="include_id"></a>}}\if{latex}{\out{\hypertarget{include_id}{}}}Whether to include the restriction's
+\item{\code{include_id}}{Whether to include the restriction's
 \ifelse{html}{\href{#active-R6MemberRestriction-id}{\code{id}}}{\ifelse{latex}{\href{#active-R6MemberRestriction-id}{\code{id}}}{\link[=R6MemberRestriction]{\code{id}}}}
 in the output message.
 \if{html}{\out{<br>}}
@@ -246,7 +244,7 @@ making it easier to identify which validation rule failed when multiple restrict
 <br>
 }}}
 
-\item{\code{include_value}}{\if{html}{\out{<a id="include_value"></a>}}\if{latex}{\out{\hypertarget{include_value}{}}}Whether to include the
+\item{\code{include_value}}{Whether to include the
 \code{value}
 in the output message.
 \if{html}{\out{<br>}}
@@ -297,9 +295,7 @@ with entries\tabular{lll}{
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{id}}{\if{html}{\out{<a id="sec-params"></a>}}\if{latex}{\out{\hypertarget{sec-params}{}}}
-
-\if{html}{\out{<a id="active-R6MemberRestriction-id"></a>}}\if{latex}{\out{\hypertarget{active-R6MemberRestriction-id}{}}}Unique identifier of the
+\item{\code{id}}{Unique identifier of the
 \code{R6MemberRestriction}.
 By default, this is part of messages when using the
 \ifelse{html}{\href{#method-R6MemberRestriction-check}{\code{check}}}{\ifelse{latex}{\href{#method-R6MemberRestriction-check}{\code{check}}}{\link[=R6MemberRestriction]{\code{check}}}} method to evaluate the restriction.
@@ -316,7 +312,7 @@ Identifiers help distinguish between multiple restrictions and make debugging ea
 <br>
 }}}
 
-\item{\code{restriction}}{\if{html}{\out{<a id="active-R6MemberRestriction-restriction"></a>}}\if{latex}{\out{\hypertarget{active-R6MemberRestriction-restriction}{}}}A
+\item{\code{restriction}}{A
 \ifelse{html}{\link[base:function]{\code{function}}}{\ifelse{latex}{\code{function}}{\link[base:function]{\code{function}}}}
 representing the validation rule for a
 \code{value}.
@@ -374,7 +370,7 @@ fields initialized and ready for use with the \ifelse{html}{\href{#method-R6Memb
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{restriction_level}}{\if{html}{\out{<a id="restriction_level"></a>}}\if{latex}{\out{\hypertarget{restriction_level}{}}}The amount of information about
+\item{\code{restriction_level}}{The amount of information about
 the
 \code{R6MemberRestriction}
 to be printed.
