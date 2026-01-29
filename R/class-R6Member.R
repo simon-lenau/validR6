@@ -963,18 +963,25 @@ R6Member <-
                 val_output <-
                     if (value_level > 0) {
                         val_str <-
-                            .capture(self$value)
+                            utils::capture.output(self$value)
                         if (
                             is.finite(value_level) && !is.logical(value_level)
                         ) {
-                            if (nchar(val_str) > value_level) {
+                            if (sum(nchar(val_str)) > value_level) {
+                                val_str <-
+                                    paste0(
+                                        val_str,
+                                        collapse = "\n"
+                                    )
+
                                 val_str <-
                                     .cut_string(
                                         val_str,
-                                        line_length = value_level,
+                                        total_length = value_level,
                                         append = ""
                                     )
-                                if (nchar(val_str) > 75) {
+
+                                if (nchar(val_str) > (getOption("width") - 4)) {
                                     val_str <-
                                         paste0(val_str, "\n...")
                                 } else {
@@ -996,11 +1003,7 @@ R6Member <-
                                 3
                             ),
                             .indent(
-                                paste0(
-                                    "`",
-                                    val_str,
-                                    "`"
-                                ),
+                                val_str,
                                 3
                             )
                         )

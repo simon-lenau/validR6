@@ -245,10 +245,10 @@ Object of class(es)
 Members:
 R6Member example_member_any
    Value:
-      `1:5` 
+      [1] 1 2 3 4 5 
 R6Member example_member_char_len2
    Value:
-      `c("foo", "bar")` 
+      [1] "foo" "bar" 
 
 }}
 }
@@ -307,10 +307,10 @@ Object of class(es)
 Members:
 R6Member example_member_any
    Value:
-      `1:5` 
+      [1] 1 2 3 4 5 
 R6Member example_member_char_len2
    Value:
-      `c("foo", "bar")` 
+      [1] "foo" "bar" 
 
 }}
 }

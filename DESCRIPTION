@@ -32,6 +32,7 @@ Collate:
     'class-R6MemberRestriction.R'
     'internals-.check_if.R'
     'internals-.cut_string.R'
+    'internals-.paste_to_linewidth.R'
     'methods-S3-R6MemberList.R'
     'validR6_package.R'
 VignetteBuilder: knitr

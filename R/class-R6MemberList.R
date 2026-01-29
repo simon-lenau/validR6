@@ -269,31 +269,36 @@ R6MemberList <-
 
                         # Loop over all `R6Member`s and print them
                         for (i in (private$`__R6Members__`$private)) {
-                            cat(
-                                .indent(
-                                    space = prefix,
-                                    times = 1,
-                                    text = gsub(
-                                        "($|\\n)",
-                                        paste0(suffix, "\\1"),
-                                        paste0(
-                                            utils::capture.output(
-                                                do.call(
-                                                    "print",
-                                                    c(
-                                                        list(
-                                                            x = private[[i]]
-                                                        ),
-                                                        args
+                            if (
+                                private[[i]]$name %in%
+                                    private$`__R6Members__`$public
+                            ) {
+                                cat(
+                                    .indent(
+                                        space = prefix,
+                                        times = 1,
+                                        text = gsub(
+                                            "($|\\n)",
+                                            paste0(suffix, "\\1"),
+                                            paste0(
+                                                utils::capture.output(
+                                                    do.call(
+                                                        "print",
+                                                        c(
+                                                            list(
+                                                                x = private[[i]]
+                                                            ),
+                                                            args
+                                                        )
                                                     )
-                                                )
-                                            ),
-                                            collapse = "\n"
+                                                ),
+                                                collapse = "\n"
+                                            )
                                         )
-                                    )
-                                ),
-                                "\n"
-                            )
+                                    ),
+                                    "\n"
+                                )
+                            }
                         }
                         cat("\n")
                         return(invisible(NULL))
