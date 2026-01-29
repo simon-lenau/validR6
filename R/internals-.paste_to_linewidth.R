@@ -8,7 +8,7 @@
 #' @param linewidth Maximum line width in characters (default: 80)
 #'
 #' @return A character string with elements pasted together
-#'
+#' @noRd
 .paste_to_linewidth <- function(
     ...,
     sep_normal = " ",
