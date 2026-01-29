@@ -83,12 +83,19 @@ R6MemberList <-
             # =============================== > methods < ================================ #
             # =============================== > .combine < =============================== #
             .combine = function(obj) {
+                if (!"R6MemberList" %in% class(obj)) {
+                    stop(
+                        paste(
+                            "Invalid attemt to combine R6MemberList with object of class(es)",
+                            .capture(class(obj))
+                        )
+                    )
+                }
                 clist <-
                     c(
                         private$.members,
                         obj$`.__enclos_env__`$private$`.members`
                     )
-                print(clist)
                 eval(as.call(c(
                     list(R6MemberList$new),
                     clist

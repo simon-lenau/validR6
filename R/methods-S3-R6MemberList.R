@@ -31,3 +31,27 @@
         return(x)
     }
 # ────────────────────────────────── <end> ─────────────────────────────────── #
+
+# ================================= > `c` < ================================== #
+#' @export
+`c.R6MemberList` <-
+    function(...) {
+        objects <- list(...)
+        
+        if (length(objects) == 0) {
+            return(NULL)
+        }
+        
+        if (length(objects) == 1) {
+            return(objects[[1]])
+        }
+        
+        # Start with the first object and combine all others
+        result <- objects[[1]]
+        for (i in 2:length(objects)) {
+            result <- result$combine(objects[[i]])
+        }
+        
+        return(result)
+    }
+# ────────────────────────────────── <end> ─────────────────────────────────── #
