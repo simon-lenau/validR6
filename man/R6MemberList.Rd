@@ -128,6 +128,7 @@ R6MemberList_example <-
 \subsection{Public methods}{
 \itemize{
 \item \href{#method-R6MemberList-new}{\code{R6MemberList$new()}}
+\item \href{#method-R6MemberList-combine}{\code{R6MemberList$combine()}}
 \item \href{#method-R6MemberList-active_bindings}{\code{R6MemberList$active_bindings()}}
 \item \href{#method-R6MemberList-R6Class}{\code{R6MemberList$R6Class()}}
 \item \href{#method-R6MemberList-public_list}{\code{R6MemberList$public_list()}}
@@ -167,6 +168,19 @@ objects to be combined in the
 \subsection{Returns}{
 \code{R6MemberList} object containing the provided
 \ifelse{html}{\link[=R6Member]{\code{R6Member}}}{\ifelse{latex}{\href{#R6Member}{\code{R6Member}}}{\link[=R6Member]{\code{R6Member}}}} objects.
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-R6MemberList-combine"></a>}}
+\if{latex}{\out{\hypertarget{method-R6MemberList-combine}{}}}
+\subsection{Method \code{combine()}}{
+Combine with another \code{R6MemberList}
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{R6MemberList$combine(obj)}\if{html}{\out{</div>}}
+}
+
+\subsection{Returns}{
+A \code{R6MemberList}
 }
 }
 \if{html}{\out{<hr>}}

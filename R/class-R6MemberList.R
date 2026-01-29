@@ -81,6 +81,21 @@ R6MemberList <-
             .members = NULL,
             # ────────────────────────────────── <end> ─────────────────────────────────── #
             # =============================== > methods < ================================ #
+            # =============================== > .combine < =============================== #
+            .combine = function(obj) {
+                clist <-
+                    c(
+                        private$.members,
+                        obj$`.__enclos_env__`$private$`.members`
+                    )
+                print(clist)
+                eval(as.call(c(
+                    list(R6MemberList$new),
+                    clist
+                )))
+            },
+            # ────────────────────────────────── <end> ─────────────────────────────────── #
+
             # ============================ > .member_apply < ============================= #
 
             .member_apply = function(
@@ -359,6 +374,18 @@ R6MemberList <-
                     private$.get_names()
             },
             # ────────────────────────────────── <end> ─────────────────────────────────── #
+            # =============================== > combine < ================================ #
+            #' @description
+            #' Combine with another `r .doc_ref_self()`
+            #'
+            #' @return
+            #' A `r .doc_ref_self()`
+            combine = function(obj) {
+                private$.combine(obj)
+            },
+
+            # ────────────────────────────────── <end> ─────────────────────────────────── #
+
             # =========================== > active_bindings < ============================ #
             #'
             #' @description
