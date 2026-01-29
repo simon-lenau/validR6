@@ -269,10 +269,7 @@ R6MemberList <-
 
                         # Loop over all `R6Member`s and print them
                         for (i in (private$`__R6Members__`$private)) {
-                            if (
-                                private[[i]]$name %in%
-                                    private$`__R6Members__`$public
-                            ) {
+                            if (!private[[i]]$is_private) {
                                 cat(
                                     .indent(
                                         space = prefix,
