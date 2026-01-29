@@ -963,17 +963,15 @@ R6Member <-
                 val_output <-
                     if (value_level > 0) {
                         val_str <-
-                            utils::capture.output(self$value)
+                            paste0(
+                                utils::capture.output(self$value),
+                                collapse = "\n"
+                            )
+
                         if (
                             is.finite(value_level) && !is.logical(value_level)
                         ) {
                             if (sum(nchar(val_str)) > value_level) {
-                                val_str <-
-                                    paste0(
-                                        val_str,
-                                        collapse = "\n"
-                                    )
-
                                 val_str <-
                                     .cut_string(
                                         val_str,
