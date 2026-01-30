@@ -1,0 +1,15 @@
+
+ ```{r,eval=TRUE,echo=FALSE,results="asis"}
+.doc_arg(
+    type = "any",
+    default = NULL,
+    description = c(
+        "Unevaluated value (",
+        .doc_ref(topic="name",namespace="base",text="symbol"),
+        ") of the",
+        .doc_ref_self(),
+        "object.",
+        .doc_fmt_highlight(paste0("This is a read-only field and is automatically determined from the ", .doc_ref_self(tag = "value"), "."))
+    )
+)
+ ```

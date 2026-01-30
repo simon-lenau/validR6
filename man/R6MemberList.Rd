@@ -246,20 +246,13 @@ May be one of the following:\tabular{ll}{
 <br>
 }}
 
-\subsection{\strong{The \code{"default"} print method}
+
+\strong{The \code{"default"} print method}
 \if{html}{\out{<br>}}
 takes the same arguments as\ifelse{html}{\link[=R6Member]{\code{R6Member$print()}}}{\ifelse{latex}{\href{#method-R6Member-print}{\code{R6Member$print()}}}{\link[=R6Member]{\code{R6Member$print()}}}}, namely \code{value_level},  \code{restriction_level} and \code{print_class} .
 \if{html}{\out{<br>}}
 It generates output like in the following example:
-\if{html}{\out{<br>}}}{
-}
-
-\subsection{1:5}{
-}
-
-\subsection{c("foo", "bar")}{
-
-\preformatted{
+\if{html}{\out{<br>}}\preformatted{
 
 Object of class(es)
    `"ExampleR6Class"`
@@ -271,7 +264,6 @@ R6Member example_member_char_len2
    Value:
       [1] "foo" "bar" 
 
-}
 }}
 }
 \if{html}{\out{</div>}}
@@ -316,20 +308,13 @@ May be one of the following:\tabular{ll}{
 <br>
 }}
 
-\subsection{\strong{The \code{"default"} print method}
+
+\strong{The \code{"default"} print method}
 \if{html}{\out{<br>}}
 takes the same arguments as\ifelse{html}{\link[=R6Member]{\code{R6Member$print()}}}{\ifelse{latex}{\href{#method-R6Member-print}{\code{R6Member$print()}}}{\link[=R6Member]{\code{R6Member$print()}}}}, namely \code{value_level},  \code{restriction_level} and \code{print_class} .
 \if{html}{\out{<br>}}
 It generates output like in the following example:
-\if{html}{\out{<br>}}}{
-}
-
-\subsection{1:5}{
-}
-
-\subsection{c("foo", "bar")}{
-
-\preformatted{
+\if{html}{\out{<br>}}\preformatted{
 
 Object of class(es)
    `"ExampleR6Class"`
@@ -341,7 +326,6 @@ R6Member example_member_char_len2
    Value:
       [1] "foo" "bar" 
 
-}
 }}
 }
 \if{html}{\out{</div>}}

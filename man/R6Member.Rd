@@ -297,6 +297,18 @@ is locked (\code{TRUE}) or writable (\code{FALSE}).\tabular{ll}{
 \if{html}{\out{
  <br>
 }}}
+
+\item{\code{value_uneval}}{Unevaluated value (\ifelse{html}{\link[base:name]{\code{symbol}}}{\ifelse{latex}{\code{symbol}}{\link[base:name]{\code{symbol}}}}) of the
+\code{R6Member}
+object.
+\if{html}{\out{<br>}}\emph{This is a read-only field and is automatically determined from the\ifelse{html}{\href{#active-R6Member-value}{\code{value}}}{\ifelse{latex}{\href{#active-R6Member-value}{\code{value}}}{\link[=R6Member]{\code{value}}}}.}\tabular{ll}{
+    \tab  \cr
+   Type:   \tab any           \cr
+   Default:  \tab \ifelse{html}{\link[base:NULL]{\code{NULL}}}{\ifelse{latex}{\code{NULL}}{\link[base:NULL]{\code{NULL}}}} \cr
+}
+\if{html}{\out{
+ <br>
+}}}
 }
 \if{html}{\out{</div>}}
 }

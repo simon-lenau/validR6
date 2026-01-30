@@ -232,11 +232,15 @@ R6MemberList <-
                     setNames(
                         private$.member_apply(
                             fun = function(x) {
-                                cat(c("\n", rep("-", 80), "\n"), sep = "")
-                                cat(.capture(x$value, collapse = "\n"))
-                                cat(c("\n", rep("-", 80), "\n"), sep = "")
                                 parse(
-                                    text = .capture(x$value, collapse = "\n")
+                                    #if (!is.null(x$value_uneval)) {
+                                    #     x$value_uneval
+                                    # } else {
+                                    text = .capture(
+                                        x$value_uneval,
+                                        collapse = "\n"
+                                    )
+                                    # }
                                 )[[1]]
                             },
                             subset = "public"

@@ -81,9 +81,9 @@ R6Member <-
             .private_prefix = ".",
             .private_suffix = "",
             .restrictions = NULL,
-
             .value = NULL,
             .value_locked = TRUE,
+            .value_uneval = NULL,
 
             # ────────────────────────────────── <end> ─────────────────────────────────── #
             # =============================== > methods < ================================ #
@@ -746,6 +746,8 @@ R6Member <-
 
                 private$.value <-
                     value
+                private$.value_uneval <-
+                    substitute(value)
 
                 private$.is_method <-
                     is.function(private$.value)
@@ -905,6 +907,8 @@ R6Member <-
                 if (!is.null(value)) {
                     self$value <-
                         value
+                    private$.value_uneval <-
+                        substitute(value)
                 }
                 if (!is.null(is_method)) {
                     self$is_method <-
@@ -1180,7 +1184,9 @@ R6Member <-
                             paste0(private$.pos_in_parent("private"), "$value")
                         },
                         " <- ",
-                        self$name
+                        "eval(",
+                        self$name,
+                        ")"
                     )
                 )
             }
@@ -1253,6 +1259,10 @@ R6Member <-
             #' ```{r child = "man-roxygen/fields_arguments/_template.Rmd",.doc_arg_name="value"}
             #' ```
             value = function(new_value) {
+                if (!missing(new_value)) {
+                    private$.value_uneval <-
+                        substitute(new_value)
+                }
                 private$.accessor(new_value, "value")
             },
             # ────────────────────────────────── <end> ─────────────────────────────────── #
@@ -1264,6 +1274,15 @@ R6Member <-
             #' ```
             value_locked = function(new_locked) {
                 private$.accessor(new_locked, "value_locked")
+            },
+            # ────────────────────────────────── <end> ─────────────────────────────────── #
+            # ============================= > value_uneval < ============================= #
+
+            #' @field value_uneval
+            #' ```{r child = "man-roxygen/fields_arguments/_template.Rmd",.doc_arg_name="value_uneval"}
+            #' ```
+            value_uneval = function() {
+                self$accessor(, "value_uneval")
             }
             # ────────────────────────────────── <end> ─────────────────────────────────── #
         )
@@ -1271,3 +1290,4 @@ R6Member <-
     )
 
 # ────────────────────────────────── <end> ─────────────────────────────────── #
+?as.symbol
